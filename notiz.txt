@@ -1,0 +1,16 @@
+Notizen aus der VO:
+- hash 2 tabellen -> 1 datei (hälfte 1HT , 2te hälfte 2HT)
+- wenn kurz -> kürzel hash als 1.
+- keine doppelte eingabe von aktien ! --> eingabe prüfen ob schon vorhanden
+- txt. verschlüsseln ?
+- statusausgabe nach jedem befehl (z.b. STATUS: FÜLLGRAD in %, XX/1000 aktien)
+- aktien ausgabe in tabelle: XX|XX|XX
+							 XX|XX|XX
+							 XX|XX|XX
+							 
+- check datei nach kürzel.csv -> wenn nicht vorhanden, dann name.csv --> nicht vorhanden => AUSGABE: Keine daten zu dieser aktien
+
+hastabellen größe m=4*j+3
+m=primzahl (HT größe)
++1 -1 +4 -4 +9 -9 +16
+quadratisches sondiren hi(x) = (h(x)+((-1)^(i+1))*((i/2)^2)
