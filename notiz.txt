@@ -1,4 +1,4 @@
-Notizen aus der VO:
+Notizen aus der VO (22.03.2017)
 - hash 2 tabellen -> 1 datei (hälfte 1HT , 2te hälfte 2HT)
 - wenn kurz -> kürzel hash als 1.
 - keine doppelte eingabe von aktien ! --> eingabe prüfen ob schon vorhanden
@@ -14,3 +14,7 @@ hastabellen größe m=4*j+3
 m=primzahl (HT größe)
 +1 -1 +4 -4 +9 -9 +16
 quadratisches sondiren hi(x) = (h(x)+((-1)^(i+1))*((i/2)^2)
+________________________________________________________________
+________________________________________________________________
+
+Ab hier dann Notizen falls es Probleme gibt (Datum, Problem):
