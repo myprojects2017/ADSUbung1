@@ -18,3 +18,6 @@ ________________________________________________________________
 ________________________________________________________________
 
 Ab hier dann Notizen falls es Probleme gibt (Datum, Problem):
+Test - 23:23 - habe eclipse neu installiert, ABDSUbung1 neu erstellt und importiert,
+hatte Probleme mit der JDE/JRA , hat mit der vorherigen Eclipse Versio nicht funktioniert
+- Falls bei dir jetzt Probleme auftauchen schauen wir uns das einfach gemeinsam an
