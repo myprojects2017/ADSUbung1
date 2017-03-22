@@ -1,5 +1,5 @@
 
-public class ADSUbung1 {
+public class ADSUebung1 {
 
 	/**
 	 * @param args
