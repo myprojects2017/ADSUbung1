@@ -32,3 +32,4 @@ Habe einiges gestern in der Nacht gemacht
 - Kommentare dazu geschrieben
 - Erste Funktionen (Menue zu Funktionen) programmiert, man kommt aus dem Menu zu jeder Funktion der Klassen,
 dass heißt nur noch die Funktionen müssen ausprogrammiert werden
+- CSV import in Array funktionier bereits
