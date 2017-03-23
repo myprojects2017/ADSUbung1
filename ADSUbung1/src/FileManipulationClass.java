@@ -41,7 +41,7 @@ public class FileManipulationClass {
 				    String[] varstring_temp = line.split(",");  
 				    
 				    if(varint_count>0)  //überspringen das erste weill im ersten durchlauf "High" drinnen steht
-				    	varstringarray_csv[varint_count]=Double.parseDouble(varstring_temp[2]); //laut .csv ist der 2 eintrag der Tageshöchstwert
+				    	varstringarray_csv[varint_count-1]=Double.parseDouble(varstring_temp[2]); //laut .csv ist der 2 eintrag der Tageshöchstwert
 					
 				    varint_count++; 
  			   
@@ -75,15 +75,43 @@ public class FileManipulationClass {
 			if(import_file(varstring_acronym)==0){
 	    		System.out.println("** Fehler: Grafik nicht darstellbar ! **");
 				return 0;
-			}
+			}	
 			else
 			{  
-				double varint_high=0; 
+				//Höchstwert bekommen == ArrayHöche;
+				double vardouble_high=0;
 				for(int i=0;i<30;i++)
 				{  
-					if(varstringarray_csv[i]>varint_high)
-						varint_high=varstringarray_csv[i];
+					if(varstringarray_csv[i]>vardouble_high)
+						vardouble_high=varstringarray_csv[i];	
+//					System.out.println(vardouble_high+"|"+varstringarray_csv[i]);
+//					System.out.println(vardouble_high);
 				}
+				
+				
+				
+				//ALG FÜR AUSGABE
+				String[][] varintarray_draw = new String[(int)((vardouble_high/100)*10)+1][31];
+				
+				for(int j=0;j<30;j++){
+					int varint_temp =(int)(varstringarray_csv[j]/10);
+						varintarray_draw[varint_temp][j]="*";
+				}
+				
+				for(int i=0;i<(int)((vardouble_high/100)*10);i++)
+				{
+					for(int j=0;j<30;j++)
+					{
+						if(varintarray_draw[i][j]!=null){
+
+							System.out.println(i+","+j);
+							if(varintarray_draw[i][j].equals("*"))
+							System.out.print("*");
+						}
+					}
+					System.out.print("\n");
+				}
+				
 				/*
 				 * *************************************
 				 * hier die darstellung !!!!
