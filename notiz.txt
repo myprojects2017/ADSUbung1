@@ -15,9 +15,20 @@ m=primzahl (HT größe)
 +1 -1 +4 -4 +9 -9 +16
 quadratisches sondiren hi(x) = (h(x)+((-1)^(i+1))*((i/2)^2)
 ________________________________________________________________
-________________________________________________________________
+****************************************************************
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
 
-Ab hier dann Notizen falls es Probleme gibt (Datum, Problem):
-Test - 23:23 - habe eclipse neu installiert, ABDSUbung1 neu erstellt und importiert,
+Ab hier dann Notizen falls es Probleme gibt (*NR*Initialien*P/I*, P=Problem,I=Info):
+
+*1*MZ*I* 
+Habe eclipse neu installiert, ABDSUbung1 neu erstellt und importiert,
 hatte Probleme mit der JDE/JRA , hat mit der vorherigen Eclipse Versio nicht funktioniert
 - Falls bei dir jetzt Probleme auftauchen schauen wir uns das einfach gemeinsam an
+
+*2*MZ*I*
+Habe einiges gestern in der Nacht gemacht 
+- Klassen angelegt
+- Funktionen eingegefügt
+- Kommentare dazu geschrieben
+- Erste Funktionen (Menue zu Funktionen) programmiert, man kommt aus dem Menu zu jeder Funktion der Klassen,
+dass heißt nur noch die Funktionen müssen ausprogrammiert werden
