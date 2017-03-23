@@ -32,4 +32,7 @@ Habe einiges gestern in der Nacht gemacht
 - Kommentare dazu geschrieben
 - Erste Funktionen (Menue zu Funktionen) programmiert, man kommt aus dem Menu zu jeder Funktion der Klassen,
 dass heißt nur noch die Funktionen müssen ausprogrammiert werden
-- CSV import in Array funktionier bereits
+- CSV import in Array funktionier bereits (speichere den wert ab , weiß noch nicht auf wieviel Stellen 
+es klug sein wird zu speichern wegen der Darstellung dann)
+- In FilemanipulationClass unter plot bekomme ich die Daten aus dem Array und ermittle den Höchstwert.
+  Die Darstellung fehlt noch !!!
