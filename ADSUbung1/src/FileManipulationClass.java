@@ -12,7 +12,8 @@ public class FileManipulationClass {
 	
 	/*Die Abfrage nach dem namen erfolgt in den Funktionen
 	 * (call by name)*/
-	
+	double[] varstringarray_csv= new double[31]; //.csv --> array --> für ausgabe (plot = zeichnen/graph)
+
 	//Aktien aus .csv/txt/... laden
 	public void load_file()
 	{
@@ -27,9 +28,10 @@ public class FileManipulationClass {
 
 	//Daten aus der KÜRZEL.csv laden
 	public int import_file(String varstring_acronym)
-	{		
+	{		 
 		BufferedReader var_br = null;
         String line = "";
+        int varint_count=0;
         try {          	
         	var_br = new BufferedReader(new InputStreamReader(
                     this.getClass().getResourceAsStream("/resources/"+varstring_acronym+".csv"))); 
@@ -38,9 +40,14 @@ public class FileManipulationClass {
 				    // use comma as separator
 				    String[] varstring_temp = line.split(",");  
 				    
-				    System.out.println(varstring_temp[0]+" | "+varstring_temp[1]+" | "+varstring_temp[2]+" | "+
-				    		varstring_temp[3]+" | "+varstring_temp[4]+" | "+varstring_temp[5]+" | "+varstring_temp[6]);
-				    
+				    if(varint_count>0)  //überspringen das erste weill im ersten durchlauf "High" drinnen steht
+				    	varstringarray_csv[varint_count]=Double.parseDouble(varstring_temp[2]); //laut .csv ist der 2 eintrag der Tageshöchstwert
+					
+				    varint_count++; 
+ 			   
+				  //  Ausgabe als List (für Testzwecke)
+//				    System.out.println(varstring_temp[0]+" | "+varstring_temp[1]+" | "+varstring_temp[2]+" | "+
+//				    		varstring_temp[3]+" | "+varstring_temp[4]+" | "+varstring_temp[5]+" | "+varstring_temp[6]);
 				}
 			} catch (IOException e) {
 				System.out.println("** Fehler ! (FC_ioexc) **"); //EXCEPTION: FileClass() =FC, ioexc = IOEXCEPTION
@@ -61,4 +68,33 @@ public class FileManipulationClass {
 		 
 		return 1;
 	}	
+
+	public int plot(String varstring_acronym) 
+	{
+			//ruft import auf, könnte sein das im array alte Daten stehen => UPDATE
+			if(import_file(varstring_acronym)==0){
+	    		System.out.println("** Fehler: Grafik nicht darstellbar ! **");
+				return 0;
+			}
+			else
+			{  
+				double varint_high=0; 
+				for(int i=0;i<30;i++)
+				{  
+					if(varstringarray_csv[i]>varint_high)
+						varint_high=varstringarray_csv[i];
+				}
+				/*
+				 * *************************************
+				 * hier die darstellung !!!!
+				 * 
+				 * 
+				 * 
+				 */
+			
+			}		
+		
+		return 1;
+	}
+
 }

@@ -20,20 +20,38 @@ public class HashClass {
 	
 	/*Übernahme des Namens oder Kürzels aus dem Menue
 	von hier an search_name oder search_acronym übergen*/
-	public void search()
+	public int search()
 	{
 		int varint_eingabe=0;
 		do{
-		System.out.print("Wollen Sie nach dem Namen(1) oder dem Kürzel(2) suchen?\nEingabe 1 oder 2 gültig): ");
-		 varint_eingabe=read.nextInt();	
+		System.out.print(
+				  "\n_______________________"
+				+ "\n|Abbruch           (0)|"
+				+ "\n|Suche nach Namen  (1)|"
+				+ "\n|Suche nach Kürzel (2)|"
+				+ "\n¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯"
+				+ "\nEingabe:");
 		 
+		//wie im Hauptmenü = Regx überprüfung
+		 String varstring_regx="[0-2]";
+			String varstring_input = read.next();
+			if(varstring_input.matches(varstring_regx))
+				varint_eingabe=Integer.parseInt(varstring_input);
+			else
+				varint_eingabe = 3;
+		 
+		 //Handeln je nach Benutzereingabe
 		 switch(varint_eingabe)
 		 {
-			 case 1:break;
-			 case 2:break;
+		 	 case 0:return 0;
+			 case 1://weiter Funktion
+				 ;break;
+			 case 2://weitere Funktion
+				 ;break;
 			 default:System.out.println("** Ungültige Eingabe! **\n");break;
 		 } 			 
-		}while(varint_eingabe<1||varint_eingabe>2);
+		}while(varint_eingabe<0||varint_eingabe>2);
+		return 0;
 			
 	}
 	//Suche nach Namen

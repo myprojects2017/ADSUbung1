@@ -28,16 +28,9 @@ public class MainClass {
 			{
 				case 1: new Manipulation().add(); break;
 				case 2: new Manipulation().delete(); break; 
-				case 3:
-					int varint_temp =0;				 				
-					do{
-						System.out.println("Geben Sie bitte das Kürzel oder den Namen der Aktien ein: ");
-						//zu testzwecken "msft"
-						varint_temp = new FileManipulationClass().import_file(read.next());	
-					}while(varint_temp!=1);
-					break;
+				case 3:	callclass(varint_befehl);break;
 				case 4: new HashClass().search(); break;
-				case 5: new DrawClass().plot();break;
+				case 5: callclass(varint_befehl);break;
 				case 6: new FileManipulationClass().save_file(); break;
 				case 7: new FileManipulationClass().load_file(); break;
 			}
@@ -64,7 +57,7 @@ public class MainClass {
 		int varint_eingabe=0;
 		do{
 			System.out.print("Eingabe: ");
-			/*RegEx für Eingabe, überprüft ob eingabe Zahl ist. z.B. wenn ein Buchstabe eingegeben wird*/
+			/*Regx für Eingabe, überprüft ob eingabe Zahl ist. z.B. wenn ein Buchstabe eingegeben wird*/
 			String varstring_regx="[1-8]";
 			String varstring_input = read.next();
 			if(varstring_input.matches(varstring_regx))
@@ -76,4 +69,27 @@ public class MainClass {
 		return varint_eingabe;
 		
 	}
+
+	
+	/*diese Funktion dient dazu, dass für PLOT & IMPORT nicht 2mal diese Abfrage oben im Code steht
+	   --> unterscheindung anhand der if-Abfrage
+	*/
+	private void callclass(int varint_i)
+	{
+		int varint_temp =0;				 				
+		do{
+			System.out.println("Bitte Kürzel/Namen der Aktien  eingeben: ");
+			if(varint_i==3){
+				varint_temp = new FileManipulationClass().import_file(read.next());	
+				if(varint_temp==1)
+			        System.out.println("** Die Datensätze wurden imporitert! **");
+			}
+			else if(varint_i==5)
+				varint_temp = new FileManipulationClass().plot(read.next());	
+		}while(varint_temp!=1);
+	}
+
+
+
 }
+
