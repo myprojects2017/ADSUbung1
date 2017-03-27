@@ -4,9 +4,8 @@
 public class Manipulation {
 
 	//Aktie hinzufügen
-	public void add()
+	public void add(HashClass name, HashClass kuerzel, Aktie aktie)
 	{
-		
 	}
 	
 	//Aktie löschen

@@ -13,6 +13,7 @@ public class MainClass {
 	
 	HashClass hashtable_name = new HashClass();
 	HashClass hashtable_acronym = new HashClass();
+	Manipulation manipulation = new Manipulation();
 	
 	public static void main(String[] args) {
 		new MainClass();
@@ -118,6 +119,14 @@ public class MainClass {
 		
 		int index1 = hashtable_name.hashFunction(aktieadd.getname());
 		System.out.println("Der Hashcode beträgt "+index1);
+		
+
+		hashtable_name.add(aktieadd.getname(),aktieadd);
+		
+		Aktie test = hashtable_name.getEntry(237);
+
+		System.out.println(test.getname());
+		
 
 	}
 

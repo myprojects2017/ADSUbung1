@@ -6,13 +6,28 @@ import java.util.Scanner;
 public class HashClass {
 	
 	Scanner read = new Scanner(System.in);
-	Aktie[] hashtable = new Aktie[1009];
+	Aktie[] hashtable = null;
+	int fuellgrad = 0;
+	int anzahl = 0;
 	
+	// Konstruktor
+	public HashClass()
+	{
+		hashtable = new Aktie[1019];
+	}
 	
+	// Eintrag auslesen (ist ein Objekt der Klasse Aktie)
 	public Aktie getEntry(int entry)
 	{
 		return hashtable[entry];
 	}
+	
+	public void setEntry(int entry, Aktie aktie)
+	{
+		hashtable[entry] = aktie;
+		System.out.println("Die Aktie " + aktie.getname() + " wurde unter " + entry + " hinzugefügt");
+	}
+	
 	
 	public int hashFunction(String aktie)
 	{
@@ -20,17 +35,44 @@ public class HashClass {
 		index = aktie.hashCode() % 1019;
 		return index;
 	}
-		
-	//Hash mit Namen
-	public void hash_name(String varstring_name)
-	{
-		
-	}
+	
 
-	//Hash mit Kürzel
-	public void hash_acronym(String varstring_acronym){
+	public void add(String name, Aktie aktie)
+	{
+		fuellgrad = (anzahl/1019)*100;
+		int sondierung = 0;
 		
+		if(fuellgrad < 100)
+		{
+			int index_entry = hashFunction(name);
+			
+				while(getEntry(index_entry) != null)
+				{
+					index_entry = index_entry + (sondierung^2);
+					Aktie entry = getEntry(index_entry);
+					String entry_name = entry.getname();
+				
+					if(entry_name == name)
+					{
+						System.out.print("Aktie wurde bereits hinzugefügt");
+						return;
+					}
+					else
+					{
+						sondierung = sondierung + 1;
+					}
+				}
+				
+				setEntry(index_entry, aktie);		
+		}
+		
+		else
+		{
+			System.out.println("Hashtabelle ist voll.");
+		}
 	}
+		
+
 	
 	/*Übernahme des Namens oder Kürzels aus dem Menue
 	von hier an search_name oder search_acronym übergen*/
