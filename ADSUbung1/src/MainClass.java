@@ -10,8 +10,9 @@
 public class MainClass {
  
 	Scanner read = new Scanner(System.in);
-	private Scanner scanner;
 	
+	HashClass hashtable_name = new HashClass();
+	HashClass hashtable_acronym = new HashClass();
 	
 	public static void main(String[] args) {
 		new MainClass();
@@ -113,7 +114,10 @@ public class MainClass {
 		System.out.println("Geben Sie das Kürzel der Aktie ein: ");
 		String eingabe_kuerzel = read.next(); 
 		aktieadd.aktie_kuerzel(eingabe_kuerzel);
-		System.out.println("Das Kürzel der Aktie beträgt: "+aktieadd.getkuerzel());
+		System.out.println("Das Kürzel der Aktie beträgt: " + aktieadd.getkuerzel());
+		
+		int index1 = hashtable_name.hashFunction(aktieadd.getname());
+		System.out.println("Der Hashcode beträgt "+index1);
 
 	}
 

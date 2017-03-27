@@ -6,6 +6,20 @@ import java.util.Scanner;
 public class HashClass {
 	
 	Scanner read = new Scanner(System.in);
+	Aktie[] hashtable = new Aktie[1009];
+	
+	
+	public Aktie getEntry(int entry)
+	{
+		return hashtable[entry];
+	}
+	
+	public int hashFunction(String aktie)
+	{
+		int index = 0;
+		index = aktie.hashCode() % 1019;
+		return index;
+	}
 		
 	//Hash mit Namen
 	public void hash_name(String varstring_name)
