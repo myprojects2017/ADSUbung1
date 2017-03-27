@@ -10,6 +10,7 @@
 public class MainClass {
  
 	Scanner read = new Scanner(System.in);
+	private Scanner scanner;
 	
 	
 	public static void main(String[] args) {
@@ -26,7 +27,7 @@ public class MainClass {
 			varint_befehl=showMenue();
 			switch(varint_befehl)
 			{
-				case 1: new Manipulation().add(); break;
+				case 1: addclass(); break;
 				case 2: new Manipulation().delete(); break; 
 				case 3:	callclass(varint_befehl);break;
 				case 4: new HashClass().search(); break;
@@ -38,6 +39,9 @@ public class MainClass {
 
 		System.out.println("** Programm wurde beendet! **");
 	}
+	
+	
+	//Funktionen der MainClass
 	
 	//Ausgabe der Menueanzeige
 	private int showMenue()
@@ -89,6 +93,29 @@ public class MainClass {
 		}while(varint_temp!=1);
 	}
 
+	private void addclass()
+	{
+		Aktie aktieadd = new Aktie();
+		
+		System.out.println("Geben Sie den Namen der Aktie ein: ");
+		String eingabe_name = read.next(); 
+		aktieadd.aktie_name(eingabe_name);
+		System.out.println("Der Name der Aktie beträgt: "+aktieadd.getname());
+		
+		System.out.println("Geben Sie die Wertpapier-Kennnummer (WKN) ein: ");
+		String scan = read.next();
+		int eingabe_wkn = Integer.parseInt(scan);
+		aktieadd.aktie_wkn(eingabe_wkn);
+		
+		System.out.println("Die WKN der Aktie beträgt: "+aktieadd.getwkn());
+		
+		
+		System.out.println("Geben Sie das Kürzel der Aktie ein: ");
+		String eingabe_kuerzel = read.next(); 
+		aktieadd.aktie_kuerzel(eingabe_kuerzel);
+		System.out.println("Das Kürzel der Aktie beträgt: "+aktieadd.getkuerzel());
+
+	}
 
 
 }
