@@ -32,7 +32,7 @@ public class MainClass {
 				case 1: addclass(); break;
 				case 2: new Manipulation().delete(); break; 
 				case 3:	callclass(varint_befehl);break;
-				case 4: manipulation.search(); break;
+				case 4: manipulation.search(hashtable_name, hashtable_acronym); break;
 				case 5: callclass(varint_befehl);break;
 				case 6: new FileManipulationClass().save_file(); break;
 				case 7: new FileManipulationClass().load_file(); break;

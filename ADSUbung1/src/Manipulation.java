@@ -17,12 +17,13 @@ public class Manipulation {
 		
 		// In die Kürzel-Hashtabelle adden
 		kuerzel = true;
-		hashtable_name.add(aktie.getkuerzel(), aktie, kuerzel);
+		hashtable_kuerzel.add(aktie.getkuerzel(), aktie, kuerzel);
 	}
 	
-	public void search(HashClass hashtable_name, HashClass hashtable_kuerzel, String search)
+	public void search(HashClass hashtable_name, HashClass hashtable_kuerzel)
 	{
 		int varint_eingabe=0;
+		Boolean kuerzel;
 		do{
 		System.out.print(
 				  "\n_______________________"
@@ -46,13 +47,15 @@ public class Manipulation {
 		 	 case 0: return;
 			 case 1:
 			 {
-				 hashtable_name.search(search);
+				 kuerzel = false;
+				 hashtable_name.search(kuerzel);
 				 
 			 }
 				 ;break;
 			 case 2:
 			 {
-				 hashtable_kuerzel.search(search);
+				 kuerzel = true;
+				 hashtable_kuerzel.search(kuerzel);
 			 }
 				 ;break;
 			 default:System.out.println("** Ungültige Eingabe! **\n");break;
