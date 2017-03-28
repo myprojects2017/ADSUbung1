@@ -37,8 +37,8 @@ public class HashClass {
 		return index;
 	}
 	
-
-	public void add(String name, Aktie aktie)
+	// type - Definieren ob nach Kürzel oder Namen geaddet wird
+	public void add(String name, Aktie aktie, Boolean type)
 	{
 		fuellgrad = (anzahl/1019)*100;
 		int sondierung = 0;
@@ -51,10 +51,22 @@ public class HashClass {
 				while(getEntry(index_entry_neu) != null)
 				{
 					index_entry_neu = index_entry + (sondierung*sondierung);
-					System.out.println(index_entry_neu);
 					sondierung = sondierung + 1;
+
 					Aktie entry = getEntry(index_entry);
-					String entry_name = entry.getname();
+					String entry_name;
+					
+					// Wenn type = false -> nach Namen vergleichen
+					if(type == false)
+					{
+					entry_name = entry.getname();
+					}
+					
+					// Wenn type = true -> nach Kuerzel vergleichen
+					else 
+					{
+					entry_name = entry.getkuerzel();
+					}
 				
 					if(name.equals(entry_name))
 					{
@@ -77,38 +89,9 @@ public class HashClass {
 	
 	/*Übernahme des Namens oder Kürzels aus dem Menue
 	von hier an search_name oder search_acronym übergen*/
-	public int search()
+	public void search(String search)
 	{
-		int varint_eingabe=0;
-		do{
-		System.out.print(
-				  "\n_______________________"
-				+ "\n|Abbruch           (0)|"
-				+ "\n|Suche nach Namen  (1)|"
-				+ "\n|Suche nach Kürzel (2)|"
-				+ "\n¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯"
-				+ "\nEingabe:");
-		 
-		//wie im Hauptmenü = Regx überprüfung
-		 String varstring_regx="[0-2]";
-			String varstring_input = read.next();
-			if(varstring_input.matches(varstring_regx))
-				varint_eingabe=Integer.parseInt(varstring_input);
-			else
-				varint_eingabe = 3;
-		 
-		 //Handeln je nach Benutzereingabe
-		 switch(varint_eingabe)
-		 {
-		 	 case 0:return 0;
-			 case 1://weiter Funktion
-				 ;break;
-			 case 2://weitere Funktion
-				 ;break;
-			 default:System.out.println("** Ungültige Eingabe! **\n");break;
-		 } 			 
-		}while(varint_eingabe<0||varint_eingabe>2);
-		return 0;
+		int sondierung = 0;
 			
 	}
 	//Suche nach Namen
