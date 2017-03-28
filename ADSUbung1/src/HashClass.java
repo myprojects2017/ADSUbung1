@@ -48,13 +48,13 @@ public class HashClass {
 			
 				while(getEntry(index_entry) != null)
 				{
-					index_entry = index_entry + (sondierung^2);
+					index_entry = index_entry + (sondierung*sondierung);
 					Aktie entry = getEntry(index_entry);
 					String entry_name = entry.getname();
 				
 					if(entry_name == name)
 					{
-						System.out.print("Aktie wurde bereits hinzugefügt");
+						System.out.println("Aktie wurde bereits hinzugefügt");
 						return;
 					}
 					else
@@ -63,7 +63,8 @@ public class HashClass {
 					}
 				}
 				
-				setEntry(index_entry, aktie);		
+				setEntry(index_entry, aktie);
+				anzahl = anzahl + 1;
 		}
 		
 		else

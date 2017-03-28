@@ -102,30 +102,23 @@ public class MainClass {
 		System.out.println("Geben Sie den Namen der Aktie ein: ");
 		String eingabe_name = read.next(); 
 		aktieadd.aktie_name(eingabe_name);
-		System.out.println("Der Name der Aktie beträgt: "+aktieadd.getname());
 		
 		System.out.println("Geben Sie die Wertpapier-Kennnummer (WKN) ein: ");
 		String scan = read.next();
 		int eingabe_wkn = Integer.parseInt(scan);
 		aktieadd.aktie_wkn(eingabe_wkn);
 		
-		System.out.println("Die WKN der Aktie beträgt: "+aktieadd.getwkn());
 		
 		
 		System.out.println("Geben Sie das Kürzel der Aktie ein: ");
 		String eingabe_kuerzel = read.next(); 
 		aktieadd.aktie_kuerzel(eingabe_kuerzel);
-		System.out.println("Das Kürzel der Aktie beträgt: " + aktieadd.getkuerzel());
 		
 		int index1 = hashtable_name.hashFunction(aktieadd.getname());
 		System.out.println("Der Hashcode beträgt "+index1);
 		
-
 		hashtable_name.add(aktieadd.getname(),aktieadd);
 		
-		Aktie test = hashtable_name.getEntry(237);
-
-		System.out.println(test.getname());
 		
 
 	}
