@@ -32,7 +32,7 @@ public class MainClass {
 				case 1: addclass(); break;
 				case 2: new Manipulation().delete(); break; 
 				case 3:	callclass(varint_befehl);break;
-				case 4: new HashClass().search(); break;
+				case 4: manipulation.search(hashtable_name, hashtable_acronym); break;
 				case 5: callclass(varint_befehl);break;
 				case 6: new FileManipulationClass().save_file(); break;
 				case 7: new FileManipulationClass().load_file(); break;
@@ -108,20 +108,15 @@ public class MainClass {
 		int eingabe_wkn = Integer.parseInt(scan);
 		aktieadd.aktie_wkn(eingabe_wkn);
 		
-		
-		
 		System.out.println("Geben Sie das Kürzel der Aktie ein: ");
 		String eingabe_kuerzel = read.next(); 
 		aktieadd.aktie_kuerzel(eingabe_kuerzel);
 		
-		int index1 = hashtable_name.hashFunction(aktieadd.getname());
-		System.out.println("Der Hashcode beträgt "+index1);
+		manipulation.add(hashtable_name, hashtable_acronym, aktieadd);
 		
-		hashtable_name.add(aktieadd.getname(),aktieadd);
-		
-		
-
 	}
+	
+
 
 
 }
