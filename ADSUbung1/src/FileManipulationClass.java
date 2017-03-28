@@ -88,27 +88,27 @@ public class FileManipulationClass {
 //					System.out.println(vardouble_high);
 				}
 				
-				
+//				
 				//AUSGABE
-				String[][] varintarray_draw = new String[(int)(vardouble_high)+1][31];
-				int x=0;
+				String[][] vardoublearray_draw = new String[1000][31];
+				
 				for(int j=0;j<30;j++){
-					int varint_temp =(int)(varstringarray_csv[j])/10;
-						varintarray_draw[varint_temp][j]="*";
+					int varint_temp =(int)(varstringarray_csv[j]);
+					vardoublearray_draw[varint_temp][j]="*";
 				}
 				
-				for(int i=(int)(vardouble_high)/10;i>0;i--)
-				{
-					for(int j=x;j<31;j++)
-					{						
-						if(varintarray_draw[i][j]!=null){ 
+				int x=1;
+				for(double j=vardouble_high;j>0;j--){
+					System.out.print(j+" | ");
+					for(int i=x;i<30;i++){
+						if(vardoublearray_draw[(int)j][i]!=null)
 							System.out.print("*");
-						} 
-					}
-					System.out.print("\n");
+						
+					} 
 					x++;
-				}
-				
+					System.out.println("");
+				} 
+								
 				/*
 				 * *************************************
 				 * hier die darstellung !!!!

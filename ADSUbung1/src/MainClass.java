@@ -36,7 +36,7 @@ public class MainClass {
 				case 5: callclass(varint_befehl);break;
 				case 6: new FileManipulationClass().save_file(); break;
 				case 7: new FileManipulationClass().load_file(); break;
-			}
+			}      
 		}while(varint_befehl!=8);
 
 		System.out.println("** Programm wurde beendet! **");
