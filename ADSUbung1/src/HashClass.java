@@ -33,6 +33,7 @@ public class HashClass {
 	{
 		int index = 0;
 		index = aktie.hashCode() % 1019;
+		if(index<0) index = index*(-1);
 		return index;
 	}
 	
