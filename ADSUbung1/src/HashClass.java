@@ -135,17 +135,5 @@ public class HashClass {
 			System.out.println("Aktie nicht gefunden");		
 	}
 	
-	
-	//Suche nach Namen
-	private void search_name(String varstring_name)
-	{
-		
-	}
-	
-	//Suche nach Kürzel
-	private void search_acronym(String varstring_acronym)
-	{
-		
-	}
 
 }
