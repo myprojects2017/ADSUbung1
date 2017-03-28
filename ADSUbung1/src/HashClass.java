@@ -45,25 +45,24 @@ public class HashClass {
 		if(fuellgrad < 100)
 		{
 			int index_entry = hashFunction(name);
+			int index_entry_neu = index_entry;
 			
-				while(getEntry(index_entry) != null)
+				while(getEntry(index_entry_neu) != null)
 				{
-					index_entry = index_entry + (sondierung*sondierung);
+					index_entry_neu = index_entry + (sondierung*sondierung);
+					System.out.println(index_entry_neu);
+					sondierung = sondierung + 1;
 					Aktie entry = getEntry(index_entry);
 					String entry_name = entry.getname();
 				
-					if(entry_name == name)
+					if(name.equals(entry_name))
 					{
 						System.out.println("Aktie wurde bereits hinzugefügt");
 						return;
-					}
-					else
-					{
-						sondierung = sondierung + 1;
-					}
+					}						
 				}
 				
-				setEntry(index_entry, aktie);
+				setEntry(index_entry_neu, aktie);
 				anzahl = anzahl + 1;
 		}
 		
