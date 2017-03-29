@@ -20,10 +20,11 @@ public class Manipulation {
 		hashtable_kuerzel.add(aktie.getkuerzel(), aktie, kuerzel);
 	}
 	
-	public void search(HashClass hashtable_name, HashClass hashtable_kuerzel)
+	public Aktie search(HashClass hashtable_name, HashClass hashtable_kuerzel)
 	{
 		int varint_eingabe=0;
 		Boolean kuerzel;
+		Aktie search_entry = new Aktie();
 		do{
 		System.out.print(
 				  "\n_______________________"
@@ -40,27 +41,31 @@ public class Manipulation {
 				varint_eingabe=Integer.parseInt(varstring_input);
 			else
 				varint_eingabe = 3;
+		
+
 		 
 		 //Handeln je nach Benutzereingabe
 		 switch(varint_eingabe)
 		 {
-		 	 case 0: return;
+		 	 case 0: ;
 			 case 1:
 			 {
 				 kuerzel = false;
-				 hashtable_name.search(kuerzel);
+				 search_entry = hashtable_name.search(kuerzel);
 				 
 			 }
-				 ;break;
+				 ;break ; 
 			 case 2:
 			 {
 				 kuerzel = true;
-				 hashtable_kuerzel.search(kuerzel);
+				 search_entry = hashtable_kuerzel.search(kuerzel);
 			 }
 				 ;break;
 			 default:System.out.println("** Ungültige Eingabe! **\n");break;
-		 } 			 
+		 } 		
+
 		}while(varint_eingabe<0||varint_eingabe>2);
+		return search_entry;
 	}
 	
 	//Aktie löschen

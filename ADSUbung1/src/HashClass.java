@@ -89,15 +89,15 @@ public class HashClass {
 	
 	/*Übernahme des Namens oder Kürzels aus dem Menue
 	von hier an search_name oder search_acronym übergen*/
-	public void search(Boolean type)
+	public Aktie search(Boolean type)
 	{
 		int sondierung = 0;
+		Aktie search_entry = new Aktie();
 		
 		System.out.println("Geben Sie den Suchbegriff ein: ");
 		String search = read.next();
 		
 		int index_entry = hashFunction(search);
-		System.out.println(index_entry);
 		int index_entry_neu = index_entry;
 		
 			while(getEntry(index_entry_neu) != null)
@@ -123,7 +123,8 @@ public class HashClass {
 				if(search.equals(entry_name))
 				{
 					System.out.println("Aktie "+entry_name+" wurde im Index "+index_entry_neu+" gefunden");
-					return;
+					search_entry = entry;
+					return search_entry;
 				}
 				
 				else
@@ -133,6 +134,7 @@ public class HashClass {
 
 			}
 			System.out.println("Aktie nicht gefunden");		
+			return search_entry;
 	}
 	
 
