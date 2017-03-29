@@ -28,6 +28,11 @@ public class HashClass {
 		System.out.println("Die Aktie " + aktie.getname() + " wurde unter " + entry + " hinzugefügt");
 	}
 	
+	public void setNull(int entry)
+	{
+		hashtable[entry] = null;
+	}
+	
 	
 	public int hashFunction(String aktie)
 	{
@@ -144,9 +149,73 @@ public class HashClass {
 			return search_entry;
 	}
 	
-	public void delete(Aktie aktie, Boolean kuerzel)
+	public void delete(String name, Boolean kuerzel)
 	{
 		int sondierung = 0;
+
+		int index_entry = hashFunction(name);
+		int index_entry_neu = index_entry;
+		int index_entry_vergleich = index_entry;
+		
+		int sondierung_delete = 0;
+		
+		while((getEntry(index_entry_neu) != null) && (index_entry_vergleich == index_entry) )
+		{				
+			
+			index_entry_neu = (int) (index_entry + Math.pow(sondierung,2));
+			if(index_entry_neu > 1018) 
+			{
+				index_entry_neu = index_entry_neu % 1018;
+			}
+			
+			Aktie entry = getEntry(index_entry_neu);
+			
+			String entry_name;
+			
+			if(entry != null)
+			{
+			
+				// Wenn type = false -> nach Namen vergleichen
+				if(kuerzel == false)
+				{
+				entry_name = entry.getname();
+				}
+				
+				// Wenn type = true -> nach Kuerzel vergleichen
+				else 
+				{
+				entry_name = entry.getkuerzel();
+				}
+				
+				// Speichern des HashCodes des betrachteten Eintrags
+				index_entry_vergleich = hashFunction(entry_name);
+			
+			
+				if(name.equals(entry_name))
+				{
+					sondierung_delete = sondierung;
+					System.out.println("Aktie "+entry_name+" wurde im Index "+index_entry_neu+" gefunden");
+					
+				}
+				sondierung = sondierung + 1;
+			}
+
+		}
+		
+		for(int i = sondierung_delete; i<(sondierung-1); i++)
+		{
+			int index_nachher = (int) (index_entry+(Math.pow((i+1),2)));
+			
+			int index_vorher = (int) (index_entry+(Math.pow((i),2)));
+			
+			Aktie tmp = getEntry(index_nachher);
+			
+			setEntry(index_vorher,tmp);
+			
+			System.out.println("Überschreiben von Eintrag" + index_vorher + "mit" + index_nachher);
+		}
+		setNull(index_entry + sondierung_delete);
+		System.out.println("Null-Setzen von " + (index_entry + sondierung_delete));
 
 	}
 	

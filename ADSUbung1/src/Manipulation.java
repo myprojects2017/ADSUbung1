@@ -110,7 +110,8 @@ public class Manipulation {
 						System.out.println("Geben Sie den Löschbegriff ein: ");
 						String loeschbegriff = read.next();
 						Aktie delete = hashtable_name.search(loeschbegriff,false);
-						System.out.println(delete.getname());
+						hashtable_name.delete(delete.getname(), false);
+						hashtable_kuerzel.delete(delete.getkuerzel(), true);
 					 }
 						 ;break ; 
 					 case 2:
@@ -118,7 +119,8 @@ public class Manipulation {
 						System.out.println("Geben Sie den Löschbegriff ein: ");
 						String loeschbegriff = read.next();
 						Aktie delete = hashtable_kuerzel.search(loeschbegriff,true);
-						delete.printAktie();
+						hashtable_kuerzel.delete(delete.getkuerzel(), true);
+						hashtable_name.delete(delete.getname(), false);
 					 }
 						 ;break;
 					 default:System.out.println("** Ungültige Eingabe! **\n");break;
