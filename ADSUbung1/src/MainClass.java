@@ -118,6 +118,7 @@ public class MainClass {
 		
 		manipulation.add(hashtable_name, hashtable_acronym, aktieadd);
 		
+		
 	}
 	
 

@@ -51,7 +51,11 @@ public class HashClass {
 				while(getEntry(index_entry_neu) != null)
 				{
 					index_entry_neu = index_entry + (sondierung*sondierung);
-					sondierung = sondierung + 1;
+					
+					if(index_entry_neu > 1018) 
+					{
+						index_entry_neu = index_entry_neu % 1018;
+					}
 
 					Aktie entry = getEntry(index_entry);
 					String entry_name;
@@ -72,7 +76,8 @@ public class HashClass {
 					{
 						System.out.println("Aktie wurde bereits hinzugefügt");
 						return;
-					}						
+					}	
+					sondierung = sondierung + 1;
 				}
 				
 				setEntry(index_entry_neu, aktie);
@@ -99,11 +104,16 @@ public class HashClass {
 		
 		int index_entry = hashFunction(search);
 		int index_entry_neu = index_entry;
+		int index_entry_vergleich = index_entry;
 		
-			while(getEntry(index_entry_neu) != null)
+			while((getEntry(index_entry_neu) != null) && (index_entry_vergleich == index_entry) )
 			{				
 				
 				index_entry_neu = index_entry + (sondierung*sondierung);
+				if(index_entry_neu > 1018) 
+				{
+					index_entry_neu = index_entry_neu % 1018;
+				}
 				Aktie entry = getEntry(index_entry_neu);
 				
 				String entry_name;
@@ -120,6 +130,9 @@ public class HashClass {
 				entry_name = entry.getkuerzel();
 				}
 				
+				// Speichern des HashCodes des betrachteten Eintrags
+				index_entry_vergleich = hashFunction(entry_name);
+				
 				if(search.equals(entry_name))
 				{
 					System.out.println("Aktie "+entry_name+" wurde im Index "+index_entry_neu+" gefunden");
@@ -127,10 +140,7 @@ public class HashClass {
 					return search_entry;
 				}
 				
-				else
-				{
-					sondierung = sondierung + 1;
-				}
+				sondierung = sondierung + 1;
 
 			}
 			System.out.println("Aktie nicht gefunden");		
