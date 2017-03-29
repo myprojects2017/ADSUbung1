@@ -7,23 +7,33 @@ public class Manipulation {
 	Scanner read = new Scanner(System.in);
 
 	//Aktie hinzufügen
-	public void add(HashClass hashtable_name, HashClass hashtable_kuerzel, Aktie aktie)
+	public void add(HashClass hashtable_name, HashClass hashtable_kuerzel)
 	{
-		Boolean kuerzel;
+		Aktie aktieadd = new Aktie();
+		
+		System.out.println("Geben Sie den Namen der Aktie ein: ");
+		String eingabe_name = read.next(); 
+		aktieadd.aktie_name(eingabe_name);
+		
+		System.out.println("Geben Sie die Wertpapier-Kennnummer (WKN) ein: ");
+		String scan = read.next();
+		int eingabe_wkn = Integer.parseInt(scan);
+		aktieadd.aktie_wkn(eingabe_wkn);
+		
+		System.out.println("Geben Sie das Kürzel der Aktie ein: ");
+		String eingabe_kuerzel = read.next(); 
+		aktieadd.aktie_kuerzel(eingabe_kuerzel);
 		
 		// In die Namens-Hashtabelle adden
-		kuerzel = false;
-		hashtable_name.add(aktie.getname(), aktie, kuerzel);
+		hashtable_name.add(aktieadd.getname(), aktieadd, false);
 		
 		// In die Kürzel-Hashtabelle adden
-		kuerzel = true;
-		hashtable_kuerzel.add(aktie.getkuerzel(), aktie, kuerzel);
+		hashtable_kuerzel.add(aktieadd.getkuerzel(), aktieadd, true);
 	}
 	
 	public Aktie search(HashClass hashtable_name, HashClass hashtable_kuerzel)
 	{
 		int varint_eingabe=0;
-		Boolean kuerzel;
 		Aktie search_entry = new Aktie();
 		do{
 		System.out.print(
@@ -50,15 +60,17 @@ public class Manipulation {
 		 	 case 0: ;
 			 case 1:
 			 {
-				 kuerzel = false;
-				 search_entry = hashtable_name.search(kuerzel);
+				System.out.println("Geben Sie den Suchbegriff ein: ");
+				String search = read.next();
+				search_entry = hashtable_name.search(search, false);
 				 
 			 }
 				 ;break ; 
 			 case 2:
 			 {
-				 kuerzel = true;
-				 search_entry = hashtable_kuerzel.search(kuerzel);
+				System.out.println("Geben Sie den Suchbegriff ein: ");
+				String search = read.next();
+				search_entry = hashtable_kuerzel.search(search, true);
 			 }
 				 ;break;
 			 default:System.out.println("** Ungültige Eingabe! **\n");break;
@@ -69,7 +81,52 @@ public class Manipulation {
 	}
 	
 	//Aktie löschen
-	public void delete() {
+	public void delete(HashClass hashtable_name, HashClass hashtable_kuerzel) {
+		int varint_eingabe=0;
+		
+		do{
+			System.out.print(
+					  "\n_________________________"
+					+ "\n|Abbruch             (0)|"
+					+ "\n|Löschen nach Namen  (1)|"
+					+ "\n|Löschen nach Kürzel (2)|"
+					+ "\n¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯--"
+					+ "\nEingabe:");
+			 
+			//wie im Hauptmenü = Regx überprüfung
+			 String varstring_regx="[0-2]";
+				String varstring_input = read.next();
+				if(varstring_input.matches(varstring_regx))
+					varint_eingabe=Integer.parseInt(varstring_input);
+				else
+					varint_eingabe = 3;
+				 
+				 //Handeln je nach Benutzereingabe
+				 switch(varint_eingabe)
+				 {
+				 	 case 0: ;
+					 case 1:
+					 {
+						System.out.println("Geben Sie den Löschbegriff ein: ");
+						String loeschbegriff = read.next();
+						Aktie delete = hashtable_name.search(loeschbegriff,false);
+						delete.printAktie();
+					 }
+						 ;break ; 
+					 case 2:
+					 {
+						System.out.println("Geben Sie den Löschbegriff ein: ");
+						String loeschbegriff = read.next();
+						Aktie delete = hashtable_kuerzel.search(loeschbegriff,true);
+						delete.printAktie();
+					 }
+						 ;break;
+					 default:System.out.println("** Ungültige Eingabe! **\n");break;
+				 } 		
+
+				}while(varint_eingabe<0||varint_eingabe>2);
+		
+		
 	 	
 	}
 	

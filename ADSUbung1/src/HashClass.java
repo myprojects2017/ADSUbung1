@@ -50,7 +50,7 @@ public class HashClass {
 			
 				while(getEntry(index_entry_neu) != null)
 				{
-					index_entry_neu = index_entry + (sondierung*sondierung);
+					index_entry_neu = (int) (index_entry + Math.pow(sondierung,2));
 					
 					if(index_entry_neu > 1018) 
 					{
@@ -94,13 +94,11 @@ public class HashClass {
 	
 	/*Übernahme des Namens oder Kürzels aus dem Menue
 	von hier an search_name oder search_acronym übergen*/
-	public Aktie search(Boolean type)
+	public Aktie search(String search, Boolean type)
 	{
 		int sondierung = 0;
 		Aktie search_entry = new Aktie();
 		
-		System.out.println("Geben Sie den Suchbegriff ein: ");
-		String search = read.next();
 		
 		int index_entry = hashFunction(search);
 		int index_entry_neu = index_entry;
@@ -109,7 +107,7 @@ public class HashClass {
 			while((getEntry(index_entry_neu) != null) && (index_entry_vergleich == index_entry) )
 			{				
 				
-				index_entry_neu = index_entry + (sondierung*sondierung);
+				index_entry_neu = (int) (index_entry + Math.pow(sondierung,2));
 				if(index_entry_neu > 1018) 
 				{
 					index_entry_neu = index_entry_neu % 1018;
@@ -145,6 +143,12 @@ public class HashClass {
 			}
 			System.out.println("Aktie nicht gefunden");		
 			return search_entry;
+	}
+	
+	public void delete()
+	{
+
+
 	}
 	
 
