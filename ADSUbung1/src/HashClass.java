@@ -77,7 +77,7 @@ public class HashClass {
 						System.out.println("Aktie wurde bereits hinzugefügt");
 						return;
 					}	
-					sondierung = sondierung + 1;
+					else sondierung = sondierung + 1;
 				}
 				
 				setEntry(index_entry_neu, aktie);
@@ -134,20 +134,19 @@ public class HashClass {
 				if(search.equals(entry_name))
 				{
 					System.out.println("Aktie "+entry_name+" wurde im Index "+index_entry_neu+" gefunden");
-					search_entry = entry;
-					return search_entry;
+					return entry;
 				}
 				
-				sondierung = sondierung + 1;
+				else sondierung = sondierung + 1;
 
 			}
 			System.out.println("Aktie nicht gefunden");		
 			return search_entry;
 	}
 	
-	public void delete()
+	public void delete(Aktie aktie, Boolean kuerzel)
 	{
-
+		int sondierung = 0;
 
 	}
 	

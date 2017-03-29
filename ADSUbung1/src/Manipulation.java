@@ -57,7 +57,7 @@ public class Manipulation {
 		 //Handeln je nach Benutzereingabe
 		 switch(varint_eingabe)
 		 {
-		 	 case 0: ;
+		 	 case 0: return search_entry ;
 			 case 1:
 			 {
 				System.out.println("Geben Sie den Suchbegriff ein: ");
@@ -104,13 +104,13 @@ public class Manipulation {
 				 //Handeln je nach Benutzereingabe
 				 switch(varint_eingabe)
 				 {
-				 	 case 0: ;
+				 	 case 0: return;
 					 case 1:
 					 {
 						System.out.println("Geben Sie den Löschbegriff ein: ");
 						String loeschbegriff = read.next();
 						Aktie delete = hashtable_name.search(loeschbegriff,false);
-						delete.printAktie();
+						System.out.println(delete.getname());
 					 }
 						 ;break ; 
 					 case 2:
