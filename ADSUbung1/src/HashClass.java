@@ -121,41 +121,47 @@ public class HashClass {
 				
 				String entry_name;
 				
-				// Wenn type = false -> nach Namen vergleichen
-				if(type == false)
+				if(entry != null)
 				{
-				entry_name = entry.getname();
+				
+					// Wenn type = false -> nach Namen vergleichen
+					if(type == false)
+					{
+					entry_name = entry.getname();
+					}
+					
+					// Wenn type = true -> nach Kuerzel vergleichen
+					else 
+					{
+					entry_name = entry.getkuerzel();
+					}
+					
+					// Speichern des HashCodes des betrachteten Eintrags
+					index_entry_vergleich = hashFunction(entry_name);
+					
+					if(search.equals(entry_name))
+					{
+						System.out.println("Aktie "+entry_name+" wurde im Index "+index_entry_neu+" gefunden");
+						return entry;
+					}
+					
+					else sondierung = sondierung + 1;
 				}
-				
-				// Wenn type = true -> nach Kuerzel vergleichen
-				else 
-				{
-				entry_name = entry.getkuerzel();
-				}
-				
-				// Speichern des HashCodes des betrachteten Eintrags
-				index_entry_vergleich = hashFunction(entry_name);
-				
-				if(search.equals(entry_name))
-				{
-					System.out.println("Aktie "+entry_name+" wurde im Index "+index_entry_neu+" gefunden");
-					return entry;
-				}
-				
-				else sondierung = sondierung + 1;
 
 			}
 			System.out.println("Aktie nicht gefunden");		
 			return search_entry;
 	}
 	
-	public void delete(String name, Boolean kuerzel)
+	public String delete(String name, Boolean kuerzel)
 	{
 		int sondierung = 0;
+		Boolean found=false;
 
 		int index_entry = hashFunction(name);
 		int index_entry_neu = index_entry;
 		int index_entry_vergleich = index_entry;
+		Aktie rueckgabe = new Aktie();
 		
 		int sondierung_delete = 0;
 		
@@ -195,6 +201,8 @@ public class HashClass {
 				{
 					sondierung_delete = sondierung;
 					System.out.println("Aktie "+entry_name+" wurde im Index "+index_entry_neu+" gefunden");
+					rueckgabe = getEntry(index_entry_neu);
+					found = true;
 					
 				}
 				sondierung = sondierung + 1;
@@ -202,20 +210,42 @@ public class HashClass {
 
 		}
 		
-		for(int i = sondierung_delete; i<(sondierung-1); i++)
-		{
-			int index_nachher = (int) (index_entry+(Math.pow((i+1),2)));
+		if(found == true)
+			{
+			for(int i = sondierung_delete; i<(sondierung-1); i++)
+			{
+				int index_nachher = (int) (index_entry+ (Math.pow((i+1),2)) );
+				
+				int index_vorher = (int) (index_entry+ (Math.pow((i),2)) );
+				
+				Aktie tmp = getEntry(index_nachher);
+				
+				setEntry(index_vorher,tmp);
+				
+				setNull(index_nachher);
+				
+				System.out.println("Überschreiben von Eintrag" + index_vorher + "mit" + index_nachher);
+			}
+			setNull(index_entry + sondierung_delete);
+			anzahl = anzahl - 1;
+			System.out.println("Null-Setzen von " + (index_entry + sondierung_delete));
 			
-			int index_vorher = (int) (index_entry+(Math.pow((i),2)));
-			
-			Aktie tmp = getEntry(index_nachher);
-			
-			setEntry(index_vorher,tmp);
-			
-			System.out.println("Überschreiben von Eintrag" + index_vorher + "mit" + index_nachher);
+			String ausgabe;
+			if(kuerzel == false)
+			{
+				ausgabe = rueckgabe.getkuerzel();
+			}
+			else 
+			{
+				ausgabe = rueckgabe.getname();
+			}
+			rueckgabe = null;
+			return ausgabe;
 		}
-		setNull(index_entry + sondierung_delete);
-		System.out.println("Null-Setzen von " + (index_entry + sondierung_delete));
+		else 
+			{
+			return "";
+			}
 
 	}
 	
