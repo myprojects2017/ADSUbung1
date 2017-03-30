@@ -35,5 +35,17 @@ public class Aktie {
 	{
 		return kuerzel;
 	}
+	
+	public void printAktie()
+	{
+		if(getname() != null)
+		{
+		System.out.println("-----------------------");
+		System.out.println("Name: " + getname());
+		System.out.println("WKN: " + getwkn());
+		System.out.println("Kürzel: " + getkuerzel());
+		System.out.println("-----------------------");
+		}
+	}
 
 }

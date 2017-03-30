@@ -28,6 +28,11 @@ public class HashClass {
 		System.out.println("Die Aktie " + aktie.getname() + " wurde unter " + entry + " hinzugefügt");
 	}
 	
+	public void setNull(int entry)
+	{
+		hashtable[entry] = null;
+	}
+	
 	
 	public int hashFunction(String aktie)
 	{
@@ -50,8 +55,12 @@ public class HashClass {
 			
 				while(getEntry(index_entry_neu) != null)
 				{
-					index_entry_neu = index_entry + (sondierung*sondierung);
-					sondierung = sondierung + 1;
+					index_entry_neu = (int) (index_entry + Math.pow(sondierung,2));
+					
+					if(index_entry_neu > 1018) 
+					{
+						index_entry_neu = index_entry_neu % 1018;
+					}
 
 					Aktie entry = getEntry(index_entry);
 					String entry_name;
@@ -72,7 +81,8 @@ public class HashClass {
 					{
 						System.out.println("Aktie wurde bereits hinzugefügt");
 						return;
-					}						
+					}	
+					else sondierung = sondierung + 1;
 				}
 				
 				setEntry(index_entry_neu, aktie);
@@ -89,27 +99,90 @@ public class HashClass {
 	
 	/*Übernahme des Namens oder Kürzels aus dem Menue
 	von hier an search_name oder search_acronym übergen*/
-	public void search(Boolean type)
+	public Aktie search(String search, Boolean type)
 	{
 		int sondierung = 0;
+		Aktie search_entry = new Aktie();
 		
-		System.out.println("Geben Sie den Suchbegriff ein: ");
-		String search = read.next();
 		
 		int index_entry = hashFunction(search);
-		System.out.println(index_entry);
 		int index_entry_neu = index_entry;
+		int index_entry_vergleich = index_entry;
 		
-			while(getEntry(index_entry_neu) != null)
+			while((getEntry(index_entry_neu) != null) && (index_entry_vergleich == index_entry) )
 			{				
 				
-				index_entry_neu = index_entry + (sondierung*sondierung);
+				index_entry_neu = (int) (index_entry + Math.pow(sondierung,2));
+				if(index_entry_neu > 1018) 
+				{
+					index_entry_neu = index_entry_neu % 1018;
+				}
 				Aktie entry = getEntry(index_entry_neu);
 				
 				String entry_name;
 				
+				if(entry != null)
+				{
+				
+					// Wenn type = false -> nach Namen vergleichen
+					if(type == false)
+					{
+					entry_name = entry.getname();
+					}
+					
+					// Wenn type = true -> nach Kuerzel vergleichen
+					else 
+					{
+					entry_name = entry.getkuerzel();
+					}
+					
+					// Speichern des HashCodes des betrachteten Eintrags
+					index_entry_vergleich = hashFunction(entry_name);
+					
+					if(search.equals(entry_name))
+					{
+						System.out.println("Aktie "+entry_name+" wurde im Index "+index_entry_neu+" gefunden");
+						return entry;
+					}
+					
+					else sondierung = sondierung + 1;
+				}
+
+			}
+			System.out.println("Aktie nicht gefunden");		
+			return search_entry;
+	}
+	
+	public String delete(String name, Boolean kuerzel)
+	{
+		int sondierung = 0;
+		Boolean found=false;
+
+		int index_entry = hashFunction(name);
+		int index_entry_neu = index_entry;
+		int index_entry_vergleich = index_entry;
+		Aktie rueckgabe = new Aktie();
+		
+		int sondierung_delete = 0;
+		
+		while((getEntry(index_entry_neu) != null) && (index_entry_vergleich == index_entry) )
+		{				
+			
+			index_entry_neu = (int) (index_entry + Math.pow(sondierung,2));
+			if(index_entry_neu > 1018) 
+			{
+				index_entry_neu = index_entry_neu % 1018;
+			}
+			
+			Aktie entry = getEntry(index_entry_neu);
+			
+			String entry_name;
+			
+			if(entry != null)
+			{
+			
 				// Wenn type = false -> nach Namen vergleichen
-				if(type == false)
+				if(kuerzel == false)
 				{
 				entry_name = entry.getname();
 				}
@@ -120,19 +193,60 @@ public class HashClass {
 				entry_name = entry.getkuerzel();
 				}
 				
-				if(search.equals(entry_name))
+				// Speichern des HashCodes des betrachteten Eintrags
+				index_entry_vergleich = hashFunction(entry_name);
+			
+			
+				if(name.equals(entry_name))
 				{
+					sondierung_delete = sondierung;
 					System.out.println("Aktie "+entry_name+" wurde im Index "+index_entry_neu+" gefunden");
-					return;
+					rueckgabe = getEntry(index_entry_neu);
+					found = true;
+					
 				}
-				
-				else
-				{
-					sondierung = sondierung + 1;
-				}
-
+				sondierung = sondierung + 1;
 			}
-			System.out.println("Aktie nicht gefunden");		
+
+		}
+		
+		if(found == true)
+			{
+			for(int i = sondierung_delete; i<(sondierung-1); i++)
+			{
+				int index_nachher = (int) (index_entry+ (Math.pow((i+1),2)) );
+				
+				int index_vorher = (int) (index_entry+ (Math.pow((i),2)) );
+				
+				Aktie tmp = getEntry(index_nachher);
+				
+				setEntry(index_vorher,tmp);
+				
+				setNull(index_nachher);
+				
+				System.out.println("Überschreiben von Eintrag" + index_vorher + "mit" + index_nachher);
+			}
+			setNull(index_entry + sondierung_delete);
+			anzahl = anzahl - 1;
+			System.out.println("Null-Setzen von " + (index_entry + sondierung_delete));
+			
+			String ausgabe;
+			if(kuerzel == false)
+			{
+				ausgabe = rueckgabe.getkuerzel();
+			}
+			else 
+			{
+				ausgabe = rueckgabe.getname();
+			}
+			rueckgabe = null;
+			return ausgabe;
+		}
+		else 
+			{
+			return "";
+			}
+
 	}
 	
 

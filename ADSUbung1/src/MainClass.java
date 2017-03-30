@@ -29,10 +29,14 @@ public class MainClass {
 			varint_befehl=showMenue();
 			switch(varint_befehl)
 			{
-				case 1: addclass(); break;
-				case 2: new Manipulation().delete(); break; 
+				case 1: manipulation.add(hashtable_name, hashtable_acronym); break;
+				case 2: new Manipulation().delete(hashtable_name, hashtable_acronym); break; 
 				case 3:	callclass(varint_befehl);break;
-				case 4: manipulation.search(hashtable_name, hashtable_acronym); break;
+				case 4: {
+							Aktie searchentry = manipulation.search(hashtable_name, hashtable_acronym);
+							searchentry.printAktie();
+							break;
+						}
 				case 5: callclass(varint_befehl);break;
 				case 6: new FileManipulationClass().save_file(); break;
 				case 7: new FileManipulationClass().load_file(); break;
@@ -95,26 +99,6 @@ public class MainClass {
 		}while(varint_temp!=1);
 	}
 
-	private void addclass()
-	{
-		Aktie aktieadd = new Aktie();
-		
-		System.out.println("Geben Sie den Namen der Aktie ein: ");
-		String eingabe_name = read.next(); 
-		aktieadd.aktie_name(eingabe_name);
-		
-		System.out.println("Geben Sie die Wertpapier-Kennnummer (WKN) ein: ");
-		String scan = read.next();
-		int eingabe_wkn = Integer.parseInt(scan);
-		aktieadd.aktie_wkn(eingabe_wkn);
-		
-		System.out.println("Geben Sie das Kürzel der Aktie ein: ");
-		String eingabe_kuerzel = read.next(); 
-		aktieadd.aktie_kuerzel(eingabe_kuerzel);
-		
-		manipulation.add(hashtable_name, hashtable_acronym, aktieadd);
-		
-	}
 	
 
 
