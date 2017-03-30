@@ -44,8 +44,7 @@ public class MainClass {
 		}while(varint_befehl!=8);
 
 		System.out.println("** Programm wurde beendet! **");
-	}
-	
+	}	
 	
 	//Funktionen der MainClass
 	

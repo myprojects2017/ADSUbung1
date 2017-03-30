@@ -4,6 +4,7 @@ public class Aktie {
 	String name;
 	String kuerzel;
 	int wkn;
+	double[] vararray_daten= new double[31]; 
 	
 	
 	public void aktie_name(String eingabe)
@@ -36,6 +37,16 @@ public class Aktie {
 		return kuerzel;
 	}
 	
+	public double[] getdaten()
+	{
+		return vararray_daten;
+	}
+	
+	public void setdaten(int i,double val)
+	{
+		vararray_daten[i]=val;
+	}
+		
 	public void printAktie()
 	{
 		if(getname() != null)
