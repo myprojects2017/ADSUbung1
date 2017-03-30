@@ -19,6 +19,7 @@ public class DrawClass {
 			}
 			
 			double vardouble_diff=vardouble_max-vardouble_min;
+			
 			//berechnen wo welches hineinkommt
 			for(int k=0;k<30;k++)
 			{ 
@@ -27,43 +28,42 @@ public class DrawClass {
 				{
 					vardouble_temp=vardouble_temp-(vardouble_diff/2);
 					vardouble_temp=vardouble_temp/(vardouble_diff/16);
+				
 					varstringarray_feld[(int)(8-vardouble_temp)][k]="*";
 				}
 				else{
 					vardouble_temp=(vardouble_diff/2)-vardouble_temp;
 					vardouble_temp=vardouble_temp/(vardouble_diff/16);	
-					varstringarray_feld[(int)(17-vardouble_temp)][k]="*";				
+					varstringarray_feld[(int)(16-vardouble_temp)][k]="*";				
 				}								  
-			} 
-			   
+			}
+			
+			int[] varintarray_temp = new int[31];
 			for(int i=16;i>0;i--)
-			{
-				//Vor Aktienwert
-				if(i==16)
-					System.out.print("________________________________\n|"); 
-				else
-					System.out.print("|");
-
+			{ 
 				//Aktienwert
 				for(int j=0;j<30;j++)
-				{
-					if(varstringarray_feld[i][j]!=null)
-						System.out.print("*");
+				{			   					
+					if(varstringarray_feld[i][j]!=null|| varintarray_temp[j]==1){
+						System.out.print("|");
+						varintarray_temp[j]=1;
+					}
 					else 
-						System.out.print(" ");						
+						System.out.print(" "); 
 				} 	
+				
 				//Nach Aktienwert 
-				if(i==16)
-					System.out.println("|-"+vardouble_max);
-				else if(i==8) 
-					System.out.println("|-"+(vardouble_max-((vardouble_max-vardouble_min)/2)));
-				else if(i==1){
-					System.out.println("|-"+vardouble_min);
-					System.out.print("¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯");
-				}
+				if(i==1)  
+					System.out.println("\n¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯");
 				else
-					System.out.println("|");
-				}	 			
+					System.out.println("");
+			}
+			
+			for(int j=0;j<30;j++)
+			{	
+				System.out.println(j+": "+vararray_temp[j]);
+			} 
+			
 		}
 		else 
 			System.out.println("** Grafik wurde nicht gezeichnet ! **");		
