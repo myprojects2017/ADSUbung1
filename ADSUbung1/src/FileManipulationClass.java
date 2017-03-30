@@ -9,9 +9,7 @@ import java.io.InputStreamReader;
  * In dieser Klasse erfoleng die Funktionen "load,save,import"
  * */
 public class FileManipulationClass {
- 
-	
-	Aktie aktie = new Aktie();
+  
 	//Aktien aus .csv/txt/... laden
 	public void load_file()
 	{
@@ -25,14 +23,15 @@ public class FileManipulationClass {
 	}	
 
 	//Daten aus der KÜRZEL.csv laden
-	public int import_file(String varstring_acronym)
-	{		  
+	public void import_file(Aktie aktie)
+	{	
 		BufferedReader var_br = null;
         String line = "";
         int varint_count=0;
+        int status=0;
         try {          	
         	var_br = new BufferedReader(new InputStreamReader(
-                    this.getClass().getResourceAsStream("/resources/"+varstring_acronym+".csv"))); 
+                    this.getClass().getResourceAsStream("/resources/"+aktie.getkuerzel()+".csv"))); 
             try {
 				while ((line = var_br.readLine()) != null) { 
 				    // use comma as separator
@@ -42,14 +41,14 @@ public class FileManipulationClass {
 				    	aktie.setdaten(varint_count,Double.parseDouble(varstring_temp[2]));
 				    varint_count++;  		 	   
 				}
+				status=1;
 			} catch (IOException e) {
 				System.out.println("** Fehler ! (FC_ioexc) **"); //EXCEPTION: FileClass() =FC, ioexc = IOEXCEPTION
 			}
 
         } catch (NullPointerException e) {
-    		e.printStackTrace();
         	System.out.println("** Fehler: Datei wurde nicht gefunden ! **");
-    		return 0; //Datei existiert nicht
+        	status=0;
         } finally {
             if (var_br != null) {
                 try {
@@ -60,61 +59,26 @@ public class FileManipulationClass {
             }
         }
 		 
-		return 1;
+		if(status==1)
+			 System.out.println("** Die Datensätze wurden importiert! **");		
 	}	
 
-	public int plot(String varstring_acronym) 
+	public void plot(Aktie aktie) 
 	{
-			//ruft import auf, könnte sein das im array alte Daten stehen => UPDATE
-//			if(import_file(varstring_acronym)==0){
-//	    		System.out.println("** Fehler: Grafik nicht darstellbar ! **");
-//				return 0;
-//			}	
-//			else
-//			{  
-				double vardouble_max=0;
-				double vardouble_min=0;
-				double vardouble_dif=0;
-				double[] vararray_temp=aktie.getdaten();
-				for(int i=0;i<30;i++)
-				{   
-					System.out.println(vararray_temp[i]);
-				}
-				//System.out.println(vardouble_max+"|"+vardouble_min+"|"+(vardouble_max-vardouble_min));
-				
-				
-//				
-//				//AUSGABE
-//				String[][] vardoublearray_draw = new String[1000][31];
-//				
-//				for(int j=0;j<30;j++){
-//					int varint_temp =(int)(varstringarray_csv[j]);
-//					vardoublearray_draw[varint_temp][j]="*";
-//				}
-//				
-//				int x=1;
-//				for(double j=vardouble_max;j>0;j--){
-//					System.out.print(j+" | ");
-//					for(int i=x;i<30;i++){
-//						if(vardoublearray_draw[(int)j][i]!=null)
-//							System.out.print("*");
-//						
-//					} 
-//					x++;
-//					System.out.println("");
-//				} 
-//								
-				/*
-				 * *************************************
-				 * hier die darstellung !!!!
-				 * 
-				 * 
-				 * 
-				 */
-			
-			//}		
 		
-		return 1;
+		if(aktie!=null){
+			double[] vararray_temp=aktie.getdaten();
+			for(int i=0;i<30;i++)
+			{
+				System.out.println(vararray_temp[i]);
+			}
+		}
+		else
+		{
+			System.out.println("** Grafik wurde nicht gezeichnet ! **");
+		}
+		
+		
+		
 	}
-
 }

@@ -34,7 +34,8 @@ public class MainClass {
 				case 3:	callclass(varint_befehl);break;
 				case 4: {
 							Aktie searchentry = manipulation.search(hashtable_name, hashtable_acronym);
-							searchentry.printAktie();
+							if(searchentry!=null)
+								searchentry.printAktie();
 							break;
 						}
 				case 5: callclass(varint_befehl);break;
@@ -84,18 +85,13 @@ public class MainClass {
 	   --> unterscheindung anhand der if-Abfrage
 	*/
 	private void callclass(int varint_i)
-	{
-		int varint_temp =0;				 				
-		do{
-			System.out.println("Bitte Kürzel/Namen der Aktien  eingeben: ");
-			if(varint_i==3){
-				varint_temp = new FileManipulationClass().import_file(read.next());	
-				if(varint_temp==1)
-			        System.out.println("** Die Datensätze wurden imporitert! **");
-			}
+	{ 
+			Aktie searchentry = manipulation.search(hashtable_name, hashtable_acronym);
+			if(varint_i==3)
+				new FileManipulationClass().import_file(searchentry);			
 			else if(varint_i==5)
-				varint_temp = new FileManipulationClass().plot(read.next());	
-		}while(varint_temp!=1);
+				 new FileManipulationClass().plot(searchentry);	
+		 
 	}
 
 	

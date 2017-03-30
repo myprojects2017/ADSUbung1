@@ -57,7 +57,7 @@ public class Manipulation {
 		 //Handeln je nach Benutzereingabe
 		 switch(varint_eingabe)
 		 {
-		 	 case 0: return search_entry ;
+		 	 case 0: return null;
 			 case 1:
 			 {
 				System.out.println("Geben Sie den Suchbegriff ein: ");
@@ -104,7 +104,7 @@ public class Manipulation {
 				 //Handeln je nach Benutzereingabe
 				 switch(varint_eingabe)
 				 {
-				 	 case 0: return;
+				 	 case 0: return; 
 					 case 1:
 					 {
 						System.out.println("Geben Sie den Löschbegriff ein: ");

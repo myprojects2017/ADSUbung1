@@ -150,7 +150,7 @@ public class HashClass {
 
 			}
 			System.out.println("Aktie nicht gefunden");		
-			return search_entry;
+			return null;
 	}
 	
 	public String delete(String name, Boolean kuerzel)
