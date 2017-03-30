@@ -222,13 +222,11 @@ public class HashClass {
 				
 				setEntry(index_vorher,tmp);
 				
-				setNull(index_nachher);
-				
 				System.out.println("Überschreiben von Eintrag" + index_vorher + "mit" + index_nachher);
 			}
-			setNull(index_entry + sondierung_delete);
+			setNull((int) (index_entry + Math.pow((sondierung-1), 2)));
 			anzahl = anzahl - 1;
-			System.out.println("Null-Setzen von " + (index_entry + sondierung_delete));
+			System.out.println("Null-Setzen von " + ((int) (index_entry + Math.pow((sondierung-1), 2))));
 			
 			String ausgabe;
 			if(kuerzel == false)
