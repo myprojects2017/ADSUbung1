@@ -102,14 +102,12 @@ public class HashClass {
 	public Aktie search(String search, Boolean type)
 	{
 		int sondierung = 0;
-		Aktie search_entry = new Aktie();
 		
 		
 		int index_entry = hashFunction(search);
 		int index_entry_neu = index_entry;
-		int index_entry_vergleich = index_entry;
 		
-			while((getEntry(index_entry_neu) != null) && (index_entry_vergleich == index_entry) )
+			while(getEntry(index_entry_neu) != null)
 			{				
 				
 				index_entry_neu = (int) (index_entry + Math.pow(sondierung,2));
@@ -136,8 +134,6 @@ public class HashClass {
 					entry_name = entry.getkuerzel();
 					}
 					
-					// Speichern des HashCodes des betrachteten Eintrags
-					index_entry_vergleich = hashFunction(entry_name);
 					
 					if(search.equals(entry_name))
 					{
@@ -160,12 +156,11 @@ public class HashClass {
 
 		int index_entry = hashFunction(name);
 		int index_entry_neu = index_entry;
-		int index_entry_vergleich = index_entry;
 		Aktie rueckgabe = new Aktie();
 		
 		int sondierung_delete = 0;
 		
-		while((getEntry(index_entry_neu) != null) && (index_entry_vergleich == index_entry) )
+		while(getEntry(index_entry_neu) != null)
 		{				
 			
 			index_entry_neu = (int) (index_entry + Math.pow(sondierung,2));
@@ -193,8 +188,6 @@ public class HashClass {
 				entry_name = entry.getkuerzel();
 				}
 				
-				// Speichern des HashCodes des betrachteten Eintrags
-				index_entry_vergleich = hashFunction(entry_name);
 			
 			
 				if(name.equals(entry_name))
