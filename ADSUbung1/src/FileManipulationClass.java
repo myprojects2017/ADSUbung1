@@ -38,10 +38,9 @@ public class FileManipulationClass {
 				    // use comma as separator
 				    String[] varstring_temp = line.split(",");  
 				    
-				    if(varint_count>0){ //überspringen das erste weill im ersten durchlauf "High" drinnen steht
+				    if(varint_count>0) //überspringen das erste weill im ersten durchlauf "High" drinnen steht
 				    	aktie.setdaten(varint_count,Double.parseDouble(varstring_temp[2]));
-				    }
-				    varint_count++;  			   
+				    varint_count++;  		 	   
 				}
 			} catch (IOException e) {
 				System.out.println("** Fehler ! (FC_ioexc) **"); //EXCEPTION: FileClass() =FC, ioexc = IOEXCEPTION
