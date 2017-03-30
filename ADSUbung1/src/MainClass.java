@@ -39,8 +39,8 @@ public class MainClass {
 							break;
 						}
 				case 5: callclass(varint_befehl);break;
-				case 6: new FileManipulationClass().save_file(); break;
-				case 7: new FileManipulationClass().load_file(); break;
+				case 6: //new DrawClass().save_file(); break;
+				case 7: //new DrawClass().load_file(); break;
 			}      
 		}while(varint_befehl!=8);
 
@@ -88,9 +88,9 @@ public class MainClass {
 	{ 
 			Aktie searchentry = manipulation.search(hashtable_name, hashtable_acronym);
 			if(varint_i==3)
-				new FileManipulationClass().import_file(searchentry);			
+				new FileManipulation().import_file(searchentry);			
 			else if(varint_i==5)
-				 new FileManipulationClass().plot(searchentry);	
+				 new DrawClass().plot(searchentry);	
 		 
 	}
 
