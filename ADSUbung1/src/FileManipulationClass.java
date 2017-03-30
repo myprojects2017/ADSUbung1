@@ -64,18 +64,59 @@ public class FileManipulationClass {
 	}	
 
 	public void plot(Aktie aktie) 
-	{
+	{		
+		double vardouble_max=0;
+		double vardouble_min=0;
+		int varint_dif=0;
 		
-		if(aktie!=null){
+		if(aktie!=null && aktie.getdaten()!=null){
 			double[] vararray_temp=aktie.getdaten();
 			for(int i=0;i<30;i++)
 			{
-				System.out.println(vararray_temp[i]);
+				if(vararray_temp[i]>vardouble_max){
+					vardouble_min=vardouble_max;
+					vardouble_max=vararray_temp[i];
+				}
+				else if(vararray_temp[i]<vardouble_min)
+					vardouble_min=vararray_temp[i];
 			}
+			
+			varint_dif=(int)((vardouble_max-vardouble_min)*10); 
+			System.out.println(vardouble_max+","+vardouble_min+","+(vardouble_max-vardouble_min));
+			System.out.println((int)(15/(vardouble_max-vardouble_min)));
+			 
+					for(int i=16;i>0;i--)
+					{
+						//Vor Aktienwert
+						if(i==16)
+							System.out.print("________________________________\n|"); 
+						else
+							System.out.print("|");
+						
+						//Aktienwert
+						for(int j=0;j<30;j++)
+						{
+							
+						} 
+						
+						//Nach Aktienwert 
+						if(i==16)
+							System.out.println("|-"+vardouble_max);
+						else if(i==8) 
+							System.out.println("|-"+vardouble_max/2);
+						else if(i==1){
+							System.out.println("|-"+vardouble_min);
+							System.out.print("¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯");
+						}
+						else
+							System.out.println("|");
+					}	 	
+			
 		}
 		else
 		{
 			System.out.println("** Grafik wurde nicht gezeichnet ! **");
+			
 		}
 		
 		

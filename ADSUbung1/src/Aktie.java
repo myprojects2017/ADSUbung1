@@ -39,7 +39,18 @@ public class Aktie {
 	
 	public double[] getdaten()
 	{
-		return vararray_daten;
+		/*AVG berechnen, da array mit 0.0 steht, und es sonst an plot() übergibt
+		 * */
+		double vardouble_avg=0;
+		for(int i=0;i<30;i++)
+		{	
+			vardouble_avg+=vararray_daten[i];
+		}
+		
+		if((vardouble_avg/31)!=0) //AVG des Arrays!=0
+			return vararray_daten;
+		else
+			return null;
 	}
 	
 	public void setdaten(int i,double val)

@@ -90,7 +90,7 @@ public class Manipulation {
 					+ "\n|Abbruch             (0)|"
 					+ "\n|Löschen nach Namen  (1)|"
 					+ "\n|Löschen nach Kürzel (2)|"
-					+ "\n¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯--"
+					+ "\n¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯"
 					+ "\nEingabe:");
 			 
 			//wie im Hauptmenü = Regx überprüfung
