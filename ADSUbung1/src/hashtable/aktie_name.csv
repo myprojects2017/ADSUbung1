@@ -235,7 +235,7 @@
  , , , 
  , , , 
  , , , 
-Microsoft,123123,msft,false
+Microsoft,123123,msft,true
  , , , 
  , , , 
  , , , 
@@ -946,8 +946,8 @@ Microsoft,123123,msft,false
  , , , 
  , , , 
  , , , 
-OMV,123123,omv,false
- , , , 
+Tesla,1213,tes,false
+OMV,12313,omv,false
  , , , 
  , , , 
  , , , 

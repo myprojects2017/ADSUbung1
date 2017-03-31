@@ -34,7 +34,6 @@ public class FileManipulation {
 				    varint_count++;  		 	   
 				}
 				status=1;
-				aktie.setimp();
 			} catch (IOException e) {
 				System.out.println("** Fehler ! (FC_ioexc) **"); //EXCEPTION: FileClass() =FC, ioexc = IOEXCEPTION
 			}
@@ -53,7 +52,10 @@ public class FileManipulation {
         }
 		 
 		if(status==1)
+		{
 			 System.out.println("** Die Datensätze wurden importiert! **");		
+			 aktie.setimp();
+		}
 	}	
 
 	
