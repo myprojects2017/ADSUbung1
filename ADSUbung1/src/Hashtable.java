@@ -244,7 +244,7 @@ public class Hashtable {
 						a = a + 1;
 								
 						}
-						while((hashcode_nachher == index_entry) && (a <= (sondierung-1)));
+						while((hashcode_nachher != index_entry) && (a <= (sondierung-1)));
 						
 						// Überschreiben des vorherigen Elements mit dem nächsten nachher						
 						setEntry(index_vorher,nachher);
