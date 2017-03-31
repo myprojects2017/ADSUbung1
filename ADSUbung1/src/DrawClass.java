@@ -7,15 +7,15 @@ public class DrawClass {
 		String[][] varstringarray_feld = new String[17][31];
 		
 		if(aktie!=null && aktie.getdaten()!=null){
-			double[] vararray_temp=aktie.getdaten();
+			double[][] vararray_temp=aktie.getdaten();
 			for(int i=0;i<30;i++)
 			{
-				if(vararray_temp[i]>vardouble_max){
+				if(vararray_temp[1][i]>vardouble_max){
 					vardouble_min=vardouble_max;
-					vardouble_max=vararray_temp[i];
+					vardouble_max=vararray_temp[1][i];
 				}
-				else if(vararray_temp[i]<vardouble_min)
-					vardouble_min=vararray_temp[i];
+				else if(vararray_temp[1][i]<vardouble_min)
+					vardouble_min=vararray_temp[1][i];
 			}
 			
 			double vardouble_diff=vardouble_max-vardouble_min;
@@ -23,7 +23,7 @@ public class DrawClass {
 			//berechnen wo welches hineinkommt
 			for(int k=0;k<30;k++)
 			{ 
-				double vardouble_temp = vardouble_max-vararray_temp[k];
+				double vardouble_temp = vardouble_max-vararray_temp[1][k];
 				if(vardouble_temp>(vardouble_diff/2))
 				{
 					vardouble_temp=vardouble_temp-(vardouble_diff/2);
@@ -61,7 +61,7 @@ public class DrawClass {
 			
 			for(int j=0;j<30;j++)
 			{	
-				System.out.println(j+": "+vararray_temp[j]);
+				System.out.println(j+": "+ aktie.getdate(j) + " , " + vararray_temp[0][j] + " , " + vararray_temp[1][j] + " , " + vararray_temp[2][j] + " , " + vararray_temp[3][j] + " , " + vararray_temp[4][j] + " , " + vararray_temp[5][j]);
 			} 
 			
 		}

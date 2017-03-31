@@ -23,7 +23,14 @@ public class FileManipulation {
 				    String[] varstring_temp = line.split(",");  
 				    
 				    if(varint_count>0) //überspringen das erste weill im ersten durchlauf "High" drinnen steht
-				    	aktie.setdaten(varint_count-1,Double.parseDouble(varstring_temp[2]));
+				    	{
+				    	aktie.setdate(varint_count-1,varstring_temp[0]);
+
+				    	for(int i = 0; i< 6; i++)
+					    	{
+					    	aktie.setdaten(i,varint_count-1,Double.parseDouble(varstring_temp[i+1]));
+					    	}
+				    	}
 				    varint_count++;  		 	   
 				}
 				status=1;

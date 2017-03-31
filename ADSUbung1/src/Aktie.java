@@ -4,7 +4,8 @@ public class Aktie {
 	String name;
 	String kuerzel;
 	int wkn;
-	double[] vararray_daten= new double[31]; 
+	String[] date = new String[30];
+	double[][] vararray_daten= new double[6][30]; 
 	
 	
 	public void aktie_name(String eingabe)
@@ -37,14 +38,14 @@ public class Aktie {
 		return kuerzel;
 	}
 	
-	public double[] getdaten()
+	public double[][] getdaten()
 	{
 		/*AVG berechnen, da array mit 0.0 steht, und es sonst an plot() übergibt
 		 * */
 		double vardouble_avg=0;
 		for(int i=0;i<30;i++)
 		{	
-			vardouble_avg+=vararray_daten[i];
+			vardouble_avg+=vararray_daten[1][i];
 		}
 		
 		if((vardouble_avg/31)!=0) //AVG des Arrays!=0
@@ -53,10 +54,22 @@ public class Aktie {
 			return null;
 	}
 	
-	public void setdaten(int i,double val)
-	{
-		vararray_daten[i]=val;
+	public void setdaten(int a, int i, double val) {
+		
+		vararray_daten[a][i]=val;
 	}
+	
+	public void setdate(int i, String a)
+	{
+		date[i] = a;
+	}
+	
+	public String getdate(int i)
+	{
+		return date[i];
+	}
+	
+
 		
 	public void printAktie()
 	{
@@ -69,5 +82,7 @@ public class Aktie {
 		System.out.println("-----------------------");
 		}
 	}
+
+
 
 }
