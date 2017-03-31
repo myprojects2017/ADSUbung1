@@ -11,7 +11,7 @@ import java.io.UnsupportedEncodingException;
 public class SaveLoad {
 	private static final String CSV_SEPARATOR = ",";
 	
-	public void save(String name_csv, HashClass hashtable_name, HashClass hashtable_acronym)
+	public void save(String name_csv, Hashtable hashtable_name, Hashtable hashtable_acronym)
 	{	
 		for(int j = 0; j < 2; j++)
 		{
@@ -38,14 +38,14 @@ public class SaveLoad {
 		            
 		            if(entry != null)
 		            {	            
-		            oneLine.append(entry.getname().trim().length() == 0? "" : entry.getname());
+		            oneLine.append(entry.getName().trim().length() == 0? "" : entry.getName());
 		            oneLine.append(CSV_SEPARATOR);
-		            oneLine.append(entry.getwkn().trim().length() == 0? "" : entry.getwkn());
+		            oneLine.append(entry.getWKN().trim().length() == 0? "" : entry.getWKN());
 		            oneLine.append(CSV_SEPARATOR);
-		            oneLine.append(entry.getkuerzel().trim().length() == 0? "" : entry.getkuerzel());
+		            oneLine.append(entry.getKuerzel().trim().length() == 0? "" : entry.getKuerzel());
 		            oneLine.append(CSV_SEPARATOR);
 		            
-		            oneLine.append(entry.getimp() ? "true" : "false");
+		            oneLine.append(entry.getImp() ? "true" : "false");
 		            bw.write(oneLine.toString());
 		            bw.newLine();
 		            }
@@ -72,7 +72,7 @@ public class SaveLoad {
 		
 	}
 	
-	public void load(String name_csv, HashClass hashtable_name, HashClass hashtable_acronym)
+	public void load(String name_csv, Hashtable hashtable_name, Hashtable hashtable_acronym)
 	{	
         for(int j = 0 ; j < 2; j++)
         {
@@ -103,13 +103,13 @@ public class SaveLoad {
 					    if(varstring_temp[0].length() > 1)
 					    {
 					    	Aktie entry = new Aktie();
-					    	entry.aktie_name(varstring_temp[0]);
-					    	entry.aktie_wkn(varstring_temp[1]);
-					    	entry.aktie_kuerzel(varstring_temp[2]);
+					    	entry.setName(varstring_temp[0]);
+					    	entry.setWKN(varstring_temp[1]);
+					    	entry.setKuerzel(varstring_temp[2]);
 					    	if(varstring_temp[3].length() == 4)
 					    	{
-					    		entry.setimp();
-					    		FileManipulation import_entry = new FileManipulation();
+					    		entry.setImp();
+					    		Import import_entry = new Import();
 					    		import_entry.import_file(entry);
 					    	}
 					    	

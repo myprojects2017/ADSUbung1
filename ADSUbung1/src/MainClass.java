@@ -2,18 +2,17 @@
 
 /*
  * Algorithmen und Datenstrukturen - Übung 1
- * Autoren: Namen vor der Abgabe einfügen**********************************
- * Datum: 23.03.2017
- * Version: 1
+ * Autoren: Ulrich Gram, Mihael
+ * Datum: 31.03.2017
  * */
 
 public class MainClass {
  
 	Scanner read = new Scanner(System.in);
 	
-	HashClass hashtable_name = new HashClass();
-	HashClass hashtable_acronym = new HashClass();
-	Manipulation manipulation = new Manipulation();
+	Hashtable hashtable_name = new Hashtable();
+	Hashtable hashtable_acronym = new Hashtable();
+	Hashtable_Manipulation manipulation = new Hashtable_Manipulation();
 	SaveLoad saveload = new SaveLoad();
 	
 	public static void main(String[] args) {
@@ -23,23 +22,24 @@ public class MainClass {
 	public MainClass()
 	{
 		
-		/*- init der Variable "varint_befehl" welche den Benutzerbefehl im Menue übergeben bekommt.
-		 *- je nach Rückgabewert wird in der switch-case-Anweisung die Funktion für die Abarbeitung aufgerufen*/
-		int varint_befehl=0;
+		// Initialisierung der Variable "varint_befehl", welche den Benutzerbefehl im Menue übergeben bekommt.
+		// Je nach Rückgabewert wird in der switch-case-Anweisung die Funktion für die Abarbeitung aufgerufen
+		int eingabe=0;
 		do{
-			varint_befehl=showMenue();
-			switch(varint_befehl)
+			// Aufruf der Funktion showMenue
+			eingabe=showMenue();
+			switch(eingabe)
 			{
 				case 1: manipulation.add(hashtable_name, hashtable_acronym); break;
-				case 2: new Manipulation().delete(hashtable_name, hashtable_acronym); break; 
-				case 3:	callclass(varint_befehl);break;
+				case 2: manipulation.delete(hashtable_name, hashtable_acronym); break; 
+				case 3:	callClass(eingabe);break;
 				case 4: {
 							Aktie searchentry = manipulation.search(hashtable_name, hashtable_acronym);
 							if(searchentry!=null)
 								searchentry.printAktie();
 							break;
 						}
-				case 5: callclass(varint_befehl);break;
+				case 5: callClass(eingabe);break;
 				case 6: {
 							System.out.println("Name der CSV-Datei: ");
 							String name_csv = read.next(); 
@@ -53,13 +53,13 @@ public class MainClass {
 							break;
 						}
 			}      
-		}while(varint_befehl!=8);
+		}while(eingabe!=8);
 
 		System.out.println("** Programm wurde beendet! **");
 	}	
 	
 	//Funktionen der MainClass
-	
+
 	//Ausgabe der Menueanzeige
 	private int showMenue()
 	{
@@ -75,31 +75,31 @@ public class MainClass {
 			+ "|QUIT   (8)|\n"
 			+ "¯¯¯¯¯¯¯¯¯¯¯¯");
 		
-		int varint_eingabe=0;
+		int eingabe=0;
 		do{
 			System.out.print("Eingabe: ");
-			/*Regx für Eingabe, überprüft ob eingabe Zahl ist. z.B. wenn ein Buchstabe eingegeben wird*/
+			//Regx für Eingabe, überprüft ob eingabe Zahl ist. z.B. wenn ein Buchstabe eingegeben wird*/
 			String varstring_regx="[1-8]";
 			String varstring_input = read.next();
 			if(varstring_input.matches(varstring_regx))
-				varint_eingabe=Integer.parseInt(varstring_input);
+				eingabe=Integer.parseInt(varstring_input);
 			else
 				System.out.println("** Ungültige Eingabe! **");
-		}while(varint_eingabe<1 || varint_eingabe>9);
+		}while(eingabe<1 || eingabe>9);
 		
-		return varint_eingabe;
+		return eingabe;
 		
 	}
 
 	
-	/*diese Funktion dient dazu, dass für PLOT & IMPORT nicht 2mal diese Abfrage oben im Code steht
-	   --> unterscheindung anhand der if-Abfrage
-	*/
-	private void callclass(int varint_i)
+	//diese Funktion dient dazu, dass für PLOT & IMPORT nicht 2mal diese Abfrage oben im Code steht
+	//  --> unterscheindung anhand der if-Abfrage
+
+	private void callClass(int varint_i)
 	{ 
 			Aktie searchentry = manipulation.search(hashtable_name, hashtable_acronym);
 			if(varint_i==3)
-				new FileManipulation().import_file(searchentry);			
+				new Import().import_file(searchentry);			
 			else if(varint_i==5)
 				 new DrawClass().plot(searchentry);	
 		 

@@ -1,116 +1,134 @@
 
 public class Aktie {
 	
-	String name;
-	String kuerzel;
-	String wkn;
-	Boolean imp = false;
-	String[] date = new String[30];
-	double[][] vararray_daten= new double[6][30]; 
+	// Variablen der Klasse Aktie
+	private String name;
+	private String kuerzel;
+	private String wkn;
+	private Boolean imp = false;
+	
+	// Kursdaten der letzen 30 Tage
+	private String[] date = new String[30];
+	
+	// Float-Daten werden mittels zweidimensionalen Array gespeichert
+	// 0 - 5 Index zu Beginn gibt an, um welchen Kurswert es sich handelt.
+	// 0: Open
+	// 1: High
+	// 2: Low
+	// 3: Close
+	// 4: Volume
+	// 5: Adj Close
+	private double[][] vararray_daten= new double[6][30]; 
 	
 	
-	public void aktie_name(String eingabe)
+	// Speichern der Daten
+	public void setName(String eingabe)
 	{
 		name = eingabe;
 	}
 	
-	public void aktie_wkn(String eingabe_wkn)
+	public void setWKN(String eingabe_wkn)
 	{
 		wkn = eingabe_wkn;
 	}
 	
-	public void aktie_kuerzel(String eingabe)
+	public void setKuerzel(String eingabe)
 	{
 		kuerzel = eingabe;
 	}
 	
-	public void setimp()
+	public void setDaten(int a, int i, double val) {
+		
+		vararray_daten[a][i]=val;
+	}
+	
+	public void setDate(int i, String a)
+	{
+		date[i] = a;
+	}
+	
+	// Wird auf true gesetzt, wenn Daten importiert werden
+	public void setImp()
 	{
 		imp = true;
 	}
 	
-
-	public String getname()
+	// Rückgabe der Daten
+	public String getName()
 	{
 		return name;
 	}
 	
-	public String getwkn()
+	public String getWKN()
 	{
 		return wkn;
 	}
 	
-	public String getkuerzel()
+	public String getKuerzel()
 	{
 		return kuerzel;
 	}
 	
-	public Boolean getimp()
+	public Boolean getImp()
 	{
 		return imp;
 	}
 	
-	public double[][] getdaten()
+	public double[][] getDaten()
 	{
-		/*AVG berechnen, da array mit 0.0 steht, und es sonst an plot() übergibt
-		 * */
+		//Mittelwert berechnen, da array mit 0.0 steht, und es sonst an plot() übergibt
 		double vardouble_avg=0;
 		for(int i=0;i<30;i++)
 		{	
 			vardouble_avg+=vararray_daten[1][i];
 		}
 		
-		if((vardouble_avg/31)!=0) //AVG des Arrays!=0
+		// Wenn Mittelwert ungleich 0: Rückgabe des zweidimensionalen Array -> sonst null
+		if((vardouble_avg/31)!=0)
 			return vararray_daten;
 		else
 			return null;
 	}
 	
-	public void setdaten(int a, int i, double val) {
-		
-		vararray_daten[a][i]=val;
-	}
-	
-	public double getdataentry(int a, int i)
+	// Bestimmten Eintrag im zweidimensionalen Array zurückgeben
+	public double getDataEntry(int a, int i)
 	{
 		return vararray_daten[a][i];
 	}
 	
-	public void setdate(int i, String a)
-	{
-		date[i] = a;
-	}
-	
-	public String getdate(int i)
+	// Datum zurückgeben
+	public String getDate(int i)
 	{
 		return date[i];
 	}
 
-		
+	
+	// Ausgabe aller Members der Klasse Aktie im Terminal
 	public void printAktie()
 	{
-		if(getname() != null)
+		if(getName() != null)
 		{
 		System.out.println("-----------------------");
-		System.out.println("Name: " + getname());
-		System.out.println("WKN: " + getwkn());
-		System.out.println("Kürzel: " + getkuerzel());
+		System.out.println("Name: " + getName());
+		System.out.println("WKN: " + getWKN());
+		System.out.println("Kürzel: " + getKuerzel());
 		if(imp == true)
 		{
 			System.out.println("");
 			System.out.println("Aktueller Kurseintrag:");
 			System.out.println("");
-			System.out.println("Date: " + getdate(0));
-			System.out.println("Open: " + getdataentry(0,0));
-			System.out.println("High: " + getdataentry(1,0));
-			System.out.println("Low: " + getdataentry(2,0));
-			System.out.println("Close: " + getdataentry(3,0));
-			System.out.println("Volume: " + getdataentry(2,0));
-			System.out.println("Adj-Close: " + getdataentry(3,0));
+			System.out.println("Date: " + getDate(0));
+			System.out.println("Open: " + getDataEntry(0,0));
+			System.out.println("High: " + getDataEntry(1,0));
+			System.out.println("Low: " + getDataEntry(2,0));
+			System.out.println("Close: " + getDataEntry(3,0));
+			System.out.println("Volume: " + getDataEntry(2,0));
+			System.out.println("Adj-Close: " + getDataEntry(3,0));
 		}
 		System.out.println("-----------------------");
 		}
 	}
+
 
 
 

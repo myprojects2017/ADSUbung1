@@ -1,38 +1,43 @@
 import java.util.Scanner;
 
-/*
- * Diese Klasse enthält die Funktion "ADD und DELETE"
- * */
-public class Manipulation {
+// Diese Klasse enthält die Funktionen Add, Search and Delete, um Einträge in ZWEI Hashtabellen zu bearbeiten
+
+
+public class Hashtable_Manipulation {
 	Scanner read = new Scanner(System.in);
 
-	//Aktie hinzufügen
-	public void add(HashClass hashtable_name, HashClass hashtable_kuerzel)
+	// Aktie hinzufügen
+	public void add(Hashtable hashtable_name, Hashtable hashtable_kuerzel)
 	{
 		Aktie aktieadd = new Aktie();
 		
 		System.out.println("Geben Sie den Namen der Aktie ein: ");
 		String eingabe_name = read.next(); 
-		aktieadd.aktie_name(eingabe_name);
+		aktieadd.setName(eingabe_name);
 		
 		System.out.println("Geben Sie die Wertpapier-Kennnummer (WKN) ein: ");
 		String eingabe_wkn = read.next();
-		aktieadd.aktie_wkn(eingabe_wkn);
+		aktieadd.setWKN(eingabe_wkn);
 		
 		System.out.println("Geben Sie das Kürzel der Aktie ein: ");
 		String eingabe_kuerzel = read.next(); 
-		aktieadd.aktie_kuerzel(eingabe_kuerzel);
+		aktieadd.setKuerzel(eingabe_kuerzel);
 		
 		// In die Namens-Hashtabelle adden
-		hashtable_name.add(aktieadd.getname(), aktieadd, false);
+		hashtable_name.add(aktieadd.getName(), aktieadd, false);
 		
 		// In die Kürzel-Hashtabelle adden
-		hashtable_kuerzel.add(aktieadd.getkuerzel(), aktieadd, true);
+		hashtable_kuerzel.add(aktieadd.getKuerzel(), aktieadd, true);
 	}
 	
-	public Aktie search(HashClass hashtable_name, HashClass hashtable_kuerzel)
+	
+	// Suchen nach bestimmten Name oder Kürzel
+	// Rückgabe des dementsprechenden Aktien-Objekts
+	// Im Hauptprogramm wird die Methode Aktie.print() aufgerufen und die Daten ausgegeben
+	
+	public Aktie search(Hashtable hashtable_name, Hashtable hashtable_kuerzel)
 	{
-		int varint_eingabe=0;
+		int eingabe=0;
 		Aktie search_entry = new Aktie();
 		do{
 		System.out.print(
@@ -44,17 +49,15 @@ public class Manipulation {
 				+ "\nEingabe:");
 		 
 		//wie im Hauptmenü = Regx überprüfung
-		 String varstring_regx="[0-2]";
-			String varstring_input = read.next();
-			if(varstring_input.matches(varstring_regx))
-				varint_eingabe=Integer.parseInt(varstring_input);
+		 String regx="[0-2]";
+			String input = read.next();
+			if(input.matches(regx))
+				eingabe=Integer.parseInt(input);
 			else
-				varint_eingabe = 3;
+				eingabe = 3;
 		
 
-		 
-		 //Handeln je nach Benutzereingabe
-		 switch(varint_eingabe)
+		 switch(eingabe)
 		 {
 		 	 case 0: return null;
 			 case 1:
@@ -75,13 +78,20 @@ public class Manipulation {
 			 default:System.out.println("** Ungültige Eingabe! **\n");break;
 		 } 		
 
-		}while(varint_eingabe<0||varint_eingabe>2);
+		}while(eingabe<0||eingabe>2);
 		return search_entry;
 	}
 	
-	//Aktie löschen
-	public void delete(HashClass hashtable_name, HashClass hashtable_kuerzel) {
-		int varint_eingabe=0;
+	
+	
+	// Aktie löschen
+	// Eingabe des Löschbegriffs und anschließendes Löschen in beiden Hashtabellen
+	// Wird in der Namen-Hashtabelle gelöscht, wird das Kürzel als String ausgegeben.
+	// Mit diesem String kann dann in der Kürzel-Hashtabelle gelöscht werden
+	// Umgekehrt genauso.
+	
+	public void delete(Hashtable hashtable_name, Hashtable hashtable_kuerzel) {
+		int eingabe=0;
 		
 		do{
 			System.out.print(
@@ -92,16 +102,15 @@ public class Manipulation {
 					+ "\n¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯"
 					+ "\nEingabe:");
 			 
-			//wie im Hauptmenü = Regx überprüfung
-			 String varstring_regx="[0-2]";
+			 String regx="[0-2]";
 				String varstring_input = read.next();
-				if(varstring_input.matches(varstring_regx))
-					varint_eingabe=Integer.parseInt(varstring_input);
+				if(varstring_input.matches(regx))
+					eingabe=Integer.parseInt(varstring_input);
 				else
-					varint_eingabe = 3;
+					eingabe = 3;
 				 
-				 //Handeln je nach Benutzereingabe
-				 switch(varint_eingabe)
+
+				 switch(eingabe)
 				 {
 				 	 case 0: return; 
 					 case 1:
@@ -111,6 +120,7 @@ public class Manipulation {
 						String kuerzel = hashtable_name.delete(loeschbegriff, false);
 						if(kuerzel == "") System.out.println("Aktie nicht gefunden");
 						String name = hashtable_kuerzel.delete(kuerzel, true);
+						if(name == "") System.out.println("Aktie nicht gefunden");
 						kuerzel = null;
 						name = null;
 					 }
@@ -122,6 +132,7 @@ public class Manipulation {
 						String name = hashtable_kuerzel.delete(loeschbegriff, true);
 						if(name == "") System.out.println("Aktie nicht gefunden");
 						String kuerzel = hashtable_name.delete(name, false);
+						if(kuerzel == "") System.out.println("Aktie nicht gefunden");
 						kuerzel = null;
 						name = null;
 					 }
@@ -129,10 +140,9 @@ public class Manipulation {
 					 default:System.out.println("** Ungültige Eingabe! **\n");break;
 				 } 		
 
-				}while(varint_eingabe<0||varint_eingabe>2);
+				}while(eingabe<0||eingabe>2);
 		
-		
-	 	
+
 	}
 	
 }

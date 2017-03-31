@@ -1,17 +1,16 @@
 import java.util.Scanner;
 
-/*
- * In dieser Klasse werden die Eingaben (Name,Kürzel) gehasht und in das dazu gehörige Array gespeichert
- * */
-public class HashClass {
+// Mithilfe dieser Klasse kann eine Hashtabelle erstellt werden
+// Sie bietet außerdem Möglichkeiten, Bearbeitung in dieser einen Hashtabelle mittels Add, Search and Delete durchzuführen
+public class Hashtable {
 	
 	Scanner read = new Scanner(System.in);
-	Aktie[] hashtable = null;
-	int fuellgrad = 0;
-	int anzahl = 0;
+	private Aktie[] hashtable = null;
+	private int fuellgrad = 0;
+	private int anzahl = 0;
 	
 	// Konstruktor
-	public HashClass()
+	public Hashtable()
 	{
 		hashtable = new Aktie[1019];
 	}
@@ -22,17 +21,21 @@ public class HashClass {
 		return hashtable[entry];
 	}
 	
+	// Einen Eintrag an einen bestimmten Index setzen
 	public void setEntry(int entry, Aktie aktie)
 	{
 		hashtable[entry] = aktie;
-		System.out.println("Die Aktie " + aktie.getname() + " wurde unter " + entry + " hinzugefügt");
+		System.out.println("Die Aktie " + aktie.getName() + " wurde unter " + entry + " hinzugefügt");
 	}
 	
+	// Referenz löschen
 	public void setNull(int entry)
 	{
 		hashtable[entry] = null;
 	}
 	
+	// Hashfunktion um aus String integer Wert zu generieren
+	// Falls negativ, wird mit -1 multipliziert
 	
 	public int hashFunction(String aktie)
 	{
@@ -42,7 +45,10 @@ public class HashClass {
 		return index;
 	}
 	
+	// Eintrag hinzufügen in dieser Hashtabelle
 	// type - Definieren ob nach Kürzel oder Namen geaddet wird
+	// type true: Kürzel, sonst Name
+	
 	public void add(String name, Aktie aktie, Boolean type)
 	{
 		fuellgrad = (anzahl/1019)*100;
@@ -53,10 +59,13 @@ public class HashClass {
 			int index_entry = hashFunction(name);
 			int index_entry_neu = index_entry;
 			
+				// Solange suchen, bis Hashtabellen-Eintrag null
 				while(getEntry(index_entry_neu) != null)
 				{
+					// Berechnung des Index
 					index_entry_neu = (int) (index_entry + Math.pow(sondierung,2));
 					
+					// Um im Indizes von 0 - 1018 zu bleiben
 					if(index_entry_neu > 1018) 
 					{
 						index_entry_neu = index_entry_neu % 1018;
@@ -68,15 +77,17 @@ public class HashClass {
 					// Wenn type = false -> nach Namen vergleichen
 					if(type == false)
 					{
-					entry_name = entry.getname();
+						entry_name = entry.getName();
 					}
 					
 					// Wenn type = true -> nach Kuerzel vergleichen
 					else 
 					{
-					entry_name = entry.getkuerzel();
+						entry_name = entry.getKuerzel();
 					}
 				
+					// Wenn Name bereits vorhanden: Errormeldung und Verlassen der Funktion
+					// Sonst Sondierung um 1 Erhöhen
 					if(name.equals(entry_name))
 					{
 						System.out.println("Aktie wurde bereits hinzugefügt");
@@ -84,7 +95,7 @@ public class HashClass {
 					}	
 					else sondierung = sondierung + 1;
 				}
-				
+				// Eintrag hineinspeichern und anzahl erhöhen
 				setEntry(index_entry_neu, aktie);
 				anzahl = anzahl + 1;
 		}
@@ -97,13 +108,14 @@ public class HashClass {
 		
 
 	
-	/*Übernahme des Namens oder Kürzels aus dem Menue
-	von hier an search_name oder search_acronym übergen*/
+	// In dieser Hastabelle nach String suchen und Objekt zurückliefern
+	// type - Definieren ob nach Kürzel oder Namen geaddet wird
+	
 	public Aktie search(String search, Boolean type)
 	{
 		int sondierung = 0;
 		
-		
+		// Berechnen des Index mittels Hashfunktion
 		int index_entry = hashFunction(search);
 		int index_entry_neu = index_entry;
 		
@@ -122,16 +134,14 @@ public class HashClass {
 				if(entry != null)
 				{
 				
-					// Wenn type = false -> nach Namen vergleichen
 					if(type == false)
 					{
-					entry_name = entry.getname();
+						entry_name = entry.getName();
 					}
 					
-					// Wenn type = true -> nach Kuerzel vergleichen
 					else 
 					{
-					entry_name = entry.getkuerzel();
+						entry_name = entry.getKuerzel();
 					}
 					
 					
@@ -149,16 +159,28 @@ public class HashClass {
 			return null;
 	}
 	
+	
+	// In dieser Hashtabelle nach String suchen und löschen
+	
 	public String delete(String name, Boolean kuerzel)
 	{
 		int sondierung = 0;
+		
+		// Wenn Eintrag gefunden -> true
 		Boolean found=false;
 
 		int index_entry = hashFunction(name);
 		int index_entry_neu = index_entry;
+		
+		// Speichern des Objekts, wenn der richtige Eintrag gefunden wurde
 		Aktie rueckgabe = new Aktie();
 		
+		// Index, falls etwas gefunden wird
 		int sondierung_delete = 0;
+		
+		
+		// Wie Suchfunktion, nur dass Index und Objekt gespeichert werden,
+		// wenn der richtige Eintrag gefunden wird
 		
 		while(getEntry(index_entry_neu) != null)
 		{				
@@ -176,19 +198,16 @@ public class HashClass {
 			if(entry != null)
 			{
 			
-				// Wenn type = false -> nach Namen vergleichen
 				if(kuerzel == false)
 				{
-				entry_name = entry.getname();
+				entry_name = entry.getName();
 				}
 				
-				// Wenn type = true -> nach Kuerzel vergleichen
 				else 
 				{
-				entry_name = entry.getkuerzel();
+				entry_name = entry.getKuerzel();
 				}
-				
-			
+
 			
 				if(name.equals(entry_name))
 				{
@@ -203,8 +222,11 @@ public class HashClass {
 
 		}
 		
+		// Wenn etwas gefunden wurde
 		if(found == true)
 			{
+			
+			// Nachrücken der Elemente, welche mit dem gefunden Eintrag im Hashwert übereinstimmen
 			for(int i = sondierung_delete; i<(sondierung-1); i++)
 			{
 				int index_nachher = (int) (index_entry+ (Math.pow((i+1),2)) );
@@ -215,18 +237,23 @@ public class HashClass {
 				
 				setEntry(index_vorher,tmp);
 			}
+			
+			// Referenz im letztne Glied der Ketten löschen und Anzahl erniedrigen
 			setNull((int) (index_entry + Math.pow((sondierung-1), 2)));
 			anzahl = anzahl - 1;
+			
+			
 			System.out.println("Löschen von " + ((int) (index_entry + Math.pow((sondierung-1), 2))));
 			
+			// Rückgabe des Kürzels/Namens als String
 			String ausgabe;
 			if(kuerzel == false)
 			{
-				ausgabe = rueckgabe.getkuerzel();
+				ausgabe = rueckgabe.getKuerzel();
 			}
 			else 
 			{
-				ausgabe = rueckgabe.getname();
+				ausgabe = rueckgabe.getName();
 			}
 			rueckgabe = null;
 			return ausgabe;

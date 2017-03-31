@@ -17,9 +17,9 @@ public class DrawClass {
 			}
 		}
 		
-		if(aktie!=null && aktie.getdaten()!=null){
+		if(aktie!=null && aktie.getDaten()!=null){
 			
-			double[][] vararray_temp=aktie.getdaten();
+			double[][] vararray_temp=aktie.getDaten();
 			vardouble_min = vararray_temp[3][10];
 			
 			for(int i=0;i<30;i++)
@@ -63,7 +63,7 @@ public class DrawClass {
 			
 			for(int j=0;j<30;j++)
 			{	
-				System.out.println((j+1)+": "+ aktie.getdate(j) + " , " + vararray_temp[0][j] + " , " + vararray_temp[1][j] + " , " + vararray_temp[2][j] + " , " + vararray_temp[3][j] + " , " + vararray_temp[4][j] + " , " + vararray_temp[5][j]);
+				System.out.println((j+1)+": "+ aktie.getDate(j) + " , " + vararray_temp[0][j] + " , " + vararray_temp[1][j] + " , " + vararray_temp[2][j] + " , " + vararray_temp[3][j] + " , " + vararray_temp[4][j] + " , " + vararray_temp[5][j]);
 			} 
 			
 		}
