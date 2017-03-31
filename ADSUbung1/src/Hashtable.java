@@ -40,9 +40,25 @@ public class Hashtable {
 	public int hashFunction(String aktie)
 	{
 		int index = 0;
-		index = aktie.hashCode() % 1019;
+		index = aktie.hashCode() % 1018;
 		if(index<0) index = index*(-1);
 		return index;
+	}
+	
+	
+	
+	public String getFunction(Aktie aktie, Boolean kuerzel)
+	{
+		if(kuerzel == false)
+		{
+			return aktie.getName();
+		}
+		
+		else 
+		{
+			return aktie.getKuerzel();
+		}
+		
 	}
 	
 	// Eintrag hinzufügen in dieser Hashtabelle
@@ -74,17 +90,7 @@ public class Hashtable {
 					Aktie entry = getEntry(index_entry);
 					String entry_name;
 					
-					// Wenn type = false -> nach Namen vergleichen
-					if(type == false)
-					{
-						entry_name = entry.getName();
-					}
-					
-					// Wenn type = true -> nach Kuerzel vergleichen
-					else 
-					{
-						entry_name = entry.getKuerzel();
-					}
+					entry_name = getFunction(entry,type);
 				
 					// Wenn Name bereits vorhanden: Errormeldung und Verlassen der Funktion
 					// Sonst Sondierung um 1 Erhöhen
@@ -134,15 +140,7 @@ public class Hashtable {
 				if(entry != null)
 				{
 				
-					if(type == false)
-					{
-						entry_name = entry.getName();
-					}
-					
-					else 
-					{
-						entry_name = entry.getKuerzel();
-					}
+					entry_name = getFunction(entry,type);
 					
 					
 					if(search.equals(entry_name))
@@ -158,6 +156,7 @@ public class Hashtable {
 			System.out.println("Aktie nicht gefunden");		
 			return null;
 	}
+	
 	
 	
 	// In dieser Hashtabelle nach String suchen und löschen
@@ -198,16 +197,7 @@ public class Hashtable {
 			if(entry != null)
 			{
 			
-				if(kuerzel == false)
-				{
-				entry_name = entry.getName();
-				}
-				
-				else 
-				{
-				entry_name = entry.getKuerzel();
-				}
-
+				entry_name = getFunction(entry,kuerzel);
 			
 				if(name.equals(entry_name))
 				{
@@ -229,16 +219,40 @@ public class Hashtable {
 			// Nachrücken der Elemente, welche mit dem gefunden Eintrag im Hashwert übereinstimmen
 			for(int i = sondierung_delete; i<(sondierung-1); i++)
 			{
-				int index_nachher = (int) (index_entry+ (Math.pow((i+1),2)) );
+					int index_vorher = (int) (index_entry+ (Math.pow((i),2)) );
+					
+					Aktie vorher = getEntry(index_vorher);		
+					String string_vorher = getFunction(vorher, kuerzel);		
+					int hashcode_vorher = hashFunction(string_vorher);
+					
+					// Nur wenn Hashcode des ersten Eintrags gleich dem Hashcode des zu löschenden Elements ist
+					if(hashcode_vorher == index_entry)
+					{
+						int a = 1;
+						int index_nachher = (int) (index_entry+ (Math.pow((i+1),2)) );
+						Aktie nachher = new Aktie();
+						String string_nachher;
+						int hashcode_nachher = 0;
+						
+						// Finden des nächsten Elements mit dem selben Hashcode
+						do
+						{
+						index_nachher = (int) (index_entry+ (Math.pow((i+a),2)) );
+						nachher = getEntry(index_nachher);
+						string_nachher = getFunction(nachher, kuerzel);
+						hashcode_nachher = hashFunction(string_nachher);
+						a = a + 1;
+								
+						}
+						while((hashcode_nachher == index_entry) && (a <= (sondierung-1)));
+						
+						// Überschreiben des vorherigen Elements mit dem nächsten nachher						
+						setEntry(index_vorher,nachher);
+					}
 				
-				int index_vorher = (int) (index_entry+ (Math.pow((i),2)) );
-				
-				Aktie tmp = getEntry(index_nachher);
-				
-				setEntry(index_vorher,tmp);
 			}
 			
-			// Referenz im letztne Glied der Ketten löschen und Anzahl erniedrigen
+			// Referenz im letzten Glied der Kette löschen und Anzahl erniedrigen
 			setNull((int) (index_entry + Math.pow((sondierung-1), 2)));
 			anzahl = anzahl - 1;
 			
