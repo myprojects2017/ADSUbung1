@@ -3,7 +3,8 @@ public class Aktie {
 	
 	String name;
 	String kuerzel;
-	int wkn;
+	String wkn;
+	Boolean imp = false;
 	String[] date = new String[30];
 	double[][] vararray_daten= new double[6][30]; 
 	
@@ -13,7 +14,7 @@ public class Aktie {
 		name = eingabe;
 	}
 	
-	public void aktie_wkn(int eingabe_wkn)
+	public void aktie_wkn(String eingabe_wkn)
 	{
 		wkn = eingabe_wkn;
 	}
@@ -28,7 +29,7 @@ public class Aktie {
 		return name;
 	}
 	
-	public int getwkn()
+	public String getwkn()
 	{
 		return wkn;
 	}
@@ -74,6 +75,10 @@ public class Aktie {
 		return date[i];
 	}
 	
+	public void setimp()
+	{
+		imp = true;
+	}
 
 		
 	public void printAktie()
@@ -84,16 +89,19 @@ public class Aktie {
 		System.out.println("Name: " + getname());
 		System.out.println("WKN: " + getwkn());
 		System.out.println("Kürzel: " + getkuerzel());
-		System.out.println("");
-		System.out.println("Aktueller Kurseintrag:");
-		System.out.println("");
-		System.out.println("Date: " + getdate(0));
-		System.out.println("Open: " + getdataentry(0,0));
-		System.out.println("High: " + getdataentry(1,0));
-		System.out.println("Low: " + getdataentry(2,0));
-		System.out.println("Close: " + getdataentry(3,0));
-		System.out.println("Volume: " + getdataentry(2,0));
-		System.out.println("Adj-Close: " + getdataentry(3,0));
+		if(imp == true)
+		{
+			System.out.println("");
+			System.out.println("Aktueller Kurseintrag:");
+			System.out.println("");
+			System.out.println("Date: " + getdate(0));
+			System.out.println("Open: " + getdataentry(0,0));
+			System.out.println("High: " + getdataentry(1,0));
+			System.out.println("Low: " + getdataentry(2,0));
+			System.out.println("Close: " + getdataentry(3,0));
+			System.out.println("Volume: " + getdataentry(2,0));
+			System.out.println("Adj-Close: " + getdataentry(3,0));
+		}
 		System.out.println("-----------------------");
 		}
 	}

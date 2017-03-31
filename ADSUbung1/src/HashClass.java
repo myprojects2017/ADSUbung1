@@ -214,12 +214,10 @@ public class HashClass {
 				Aktie tmp = getEntry(index_nachher);
 				
 				setEntry(index_vorher,tmp);
-				
-				System.out.println("Überschreiben von Eintrag" + index_vorher + "mit" + index_nachher);
 			}
 			setNull((int) (index_entry + Math.pow((sondierung-1), 2)));
 			anzahl = anzahl - 1;
-			System.out.println("Null-Setzen von " + ((int) (index_entry + Math.pow((sondierung-1), 2))));
+			System.out.println("Löschen von " + ((int) (index_entry + Math.pow((sondierung-1), 2))));
 			
 			String ausgabe;
 			if(kuerzel == false)

@@ -16,8 +16,7 @@ public class Manipulation {
 		aktieadd.aktie_name(eingabe_name);
 		
 		System.out.println("Geben Sie die Wertpapier-Kennnummer (WKN) ein: ");
-		String scan = read.next();
-		int eingabe_wkn = Integer.parseInt(scan);
+		String eingabe_wkn = read.next();
 		aktieadd.aktie_wkn(eingabe_wkn);
 		
 		System.out.println("Geben Sie das Kürzel der Aktie ein: ");

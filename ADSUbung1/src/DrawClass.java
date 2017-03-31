@@ -20,16 +20,16 @@ public class DrawClass {
 		if(aktie!=null && aktie.getdaten()!=null){
 			
 			double[][] vararray_temp=aktie.getdaten();
-			vardouble_min = vararray_temp[2][10];
+			vardouble_min = vararray_temp[3][10];
 			
 			for(int i=0;i<30;i++)
 			{
-				if(vararray_temp[2][i]>vardouble_max){
-					vardouble_max=vararray_temp[2][i];
+				if(vararray_temp[3][i]>vardouble_max){
+					vardouble_max=vararray_temp[3][i];
 				}
-				if(vararray_temp[2][i]<vardouble_min)
+				if(vararray_temp[3][i]<vardouble_min)
 				{
-					vardouble_min=vararray_temp[2][i];
+					vardouble_min=vararray_temp[3][i];
 				}
 			}
 			
@@ -39,7 +39,7 @@ public class DrawClass {
 			
 			for(int i = 0; i < 30; i++)
 			{
-				double y_kaestchen = (((vararray_temp[2][i] - vardouble_min)*12)/vardouble_diff); 
+				double y_kaestchen = (((vararray_temp[3][i] - vardouble_min)*12)/vardouble_diff); 
 				int y = (int) y_kaestchen;
 				matrix[y][i] = "*";
 			}
