@@ -1,7 +1,9 @@
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 
@@ -49,9 +51,13 @@ public class SaveLoad {
 		            }
 		            else 
 		            {
+		            	oneLine.append(" ");
 		            	oneLine.append(CSV_SEPARATOR);
+		            	oneLine.append(" ");
 		            	oneLine.append(CSV_SEPARATOR);
+		            	oneLine.append(" ");
 		            	oneLine.append(CSV_SEPARATOR);
+		            	oneLine.append(" ");
 		            	bw.write(oneLine.toString());
 			            bw.newLine();
 		            }
@@ -65,4 +71,45 @@ public class SaveLoad {
 		}
 		
 	}
+	
+	public void load(String name_csv, HashClass hashtable_name, HashClass hashtable_acronym)
+	{	
+		BufferedReader var_br = null;
+        String line = "";
+        int varint_count=0;
+        int status=0;
+        try
+        {
+        	var_br = new BufferedReader(new InputStreamReader(
+                    this.getClass().getResourceAsStream("/hashtable/"+name_csv+"_name.csv")));
+        	try
+        	{
+        		while ((line = var_br.readLine()) != null) { 
+				    // use comma as separator
+				    String[] varstring_temp = line.split(",");  
+				    
+				    //if(varstring_temp[0] != " ")
+				    //{
+				    System.out.println(varint_count + " , " + varstring_temp[0]);
+				   // }
+
+
+				    varint_count++;  		 	   
+				}
+
+        		
+        	}
+        	catch (IOException e) 
+        	{
+				System.out.println("** Fehler ! (FC_ioexc) **"); //EXCEPTION: FileClass() =FC, ioexc = IOEXCEPTION
+			}
+        	
+        	
+        	
+        }     
+        catch(NullPointerException e)
+        {
+        	System.out.println("** Fehler: Datei wurde nicht gefunden ! **");
+        }
+    }
 }

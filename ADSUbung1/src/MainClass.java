@@ -46,7 +46,12 @@ public class MainClass {
 							saveload.save(name_csv, hashtable_name, hashtable_acronym);					
 							break;
 						}
-				case 7: //new DrawClass().load_file(); break;
+				case 7: {
+							System.out.println("Name der CSV-Datei: ");
+							String name_csv = read.next(); 
+							saveload.load(name_csv, hashtable_name, hashtable_acronym);					
+							break;
+						}
 			}      
 		}while(varint_befehl!=8);
 
