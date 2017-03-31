@@ -24,6 +24,12 @@ public class Aktie {
 		kuerzel = eingabe;
 	}
 	
+	public void setimp()
+	{
+		imp = true;
+	}
+	
+
 	public String getname()
 	{
 		return name;
@@ -37,6 +43,11 @@ public class Aktie {
 	public String getkuerzel()
 	{
 		return kuerzel;
+	}
+	
+	public Boolean getimp()
+	{
+		return imp;
 	}
 	
 	public double[][] getdaten()
@@ -73,11 +84,6 @@ public class Aktie {
 	public String getdate(int i)
 	{
 		return date[i];
-	}
-	
-	public void setimp()
-	{
-		imp = true;
 	}
 
 		

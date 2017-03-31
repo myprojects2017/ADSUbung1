@@ -14,6 +14,7 @@ public class MainClass {
 	HashClass hashtable_name = new HashClass();
 	HashClass hashtable_acronym = new HashClass();
 	Manipulation manipulation = new Manipulation();
+	SaveLoad saveload = new SaveLoad();
 	
 	public static void main(String[] args) {
 		new MainClass();
@@ -39,7 +40,12 @@ public class MainClass {
 							break;
 						}
 				case 5: callclass(varint_befehl);break;
-				case 6: //new DrawClass().save_file(); break;
+				case 6: {
+							System.out.println("Name der CSV-Datei: ");
+							String name_csv = read.next(); 
+							saveload.save(name_csv, hashtable_name, hashtable_acronym);					
+							break;
+						}
 				case 7: //new DrawClass().load_file(); break;
 			}      
 		}while(varint_befehl!=8);

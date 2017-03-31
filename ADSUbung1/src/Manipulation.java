@@ -135,17 +135,4 @@ public class Manipulation {
 	 	
 	}
 	
-	public void save(HashClass name, HashClass kuerzel)
-	{
-		/*
-		for(int i=0;i<1019;i++)
-		{
-		Aktie eintrag = name.getEntry(10);
-			String name1 = eintrag.getname();
-			String kuerz1 =	eintrag.getkuerzel();
-			int wert1 =	eintrag.getwkn();
-		}
-		*/
-		
-	}
 }
