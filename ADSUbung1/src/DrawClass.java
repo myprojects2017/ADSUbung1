@@ -4,64 +4,66 @@ public class DrawClass {
 	{		
 		double vardouble_max=0;
 		double vardouble_min=0; 
-		String[][] varstringarray_feld = new String[17][31];
+		String[][] matrix = new String[13][30];
+		for(int i = 0; i < 13; i++)
+		{
+			for(int k = 0; k< 30; k++)
+			{
+				if(i==0)
+				{
+					matrix[i][k] = "-";	
+				}
+				else matrix[i][k] = " ";
+			}
+		}
 		
 		if(aktie!=null && aktie.getdaten()!=null){
+			
 			double[][] vararray_temp=aktie.getdaten();
+			vardouble_min = vararray_temp[2][10];
+			
 			for(int i=0;i<30;i++)
 			{
-				if(vararray_temp[1][i]>vardouble_max){
-					vardouble_min=vardouble_max;
-					vardouble_max=vararray_temp[1][i];
+				if(vararray_temp[2][i]>vardouble_max){
+					vardouble_max=vararray_temp[2][i];
 				}
-				else if(vararray_temp[1][i]<vardouble_min)
-					vardouble_min=vararray_temp[1][i];
+				if(vararray_temp[2][i]<vardouble_min)
+				{
+					vardouble_min=vararray_temp[2][i];
+				}
 			}
+			
+			System.out.println("");
 			
 			double vardouble_diff=vardouble_max-vardouble_min;
 			
-			//berechnen wo welches hineinkommt
-			for(int k=0;k<30;k++)
-			{ 
-				double vardouble_temp = vardouble_max-vararray_temp[1][k];
-				if(vardouble_temp>(vardouble_diff/2))
-				{
-					vardouble_temp=vardouble_temp-(vardouble_diff/2);
-					vardouble_temp=vardouble_temp/(vardouble_diff/16);
-				
-					varstringarray_feld[(int)(8-vardouble_temp)][k]="*";
-				}
-				else{
-					vardouble_temp=(vardouble_diff/2)-vardouble_temp;
-					vardouble_temp=vardouble_temp/(vardouble_diff/16);	
-					varstringarray_feld[(int)(16-vardouble_temp)][k]="*";				
-				}								  
+			for(int i = 0; i < 30; i++)
+			{
+				double y_kaestchen = (((vararray_temp[2][i] - vardouble_min)*12)/vardouble_diff); 
+				int y = (int) y_kaestchen;
+				matrix[y][i] = "*";
 			}
 			
-			int[] varintarray_temp = new int[31];
-			for(int i=16;i>0;i--)
-			{ 
-				//Aktienwert
-				for(int j=0;j<30;j++)
-				{			   					
-					if(varstringarray_feld[i][j]!=null|| varintarray_temp[j]==1){
-						System.out.print("|");
-						varintarray_temp[j]=1;
-					}
-					else 
-						System.out.print(" "); 
-				} 	
-				
-				//Nach Aktienwert 
-				if(i==1)  
-					System.out.println("\n¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯");
-				else
-					System.out.println("");
+			String zeile ="";
+			
+			for(int i = 12; i >= 0; i--)
+			{
+				for( int j = 0; j < 30; j ++)
+				{
+					zeile = zeile + matrix[i][j];
+				}
+				if (i==12) System.out.println("|" + zeile + "    " + vardouble_max);
+				else if (i==0) System.out.println("|" + zeile + "    " + vardouble_min);
+				else System.out.println("|" + zeile);
+				zeile = "";
 			}
+			System.out.println("");
+			System.out.println("Alle Kursdaten der letzten 30 Tage:"); 
+			System.out.println("");
 			
 			for(int j=0;j<30;j++)
 			{	
-				System.out.println(j+": "+ aktie.getdate(j) + " , " + vararray_temp[0][j] + " , " + vararray_temp[1][j] + " , " + vararray_temp[2][j] + " , " + vararray_temp[3][j] + " , " + vararray_temp[4][j] + " , " + vararray_temp[5][j]);
+				System.out.println((j+1)+": "+ aktie.getdate(j) + " , " + vararray_temp[0][j] + " , " + vararray_temp[1][j] + " , " + vararray_temp[2][j] + " , " + vararray_temp[3][j] + " , " + vararray_temp[4][j] + " , " + vararray_temp[5][j]);
 			} 
 			
 		}

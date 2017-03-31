@@ -59,6 +59,11 @@ public class Aktie {
 		vararray_daten[a][i]=val;
 	}
 	
+	public double getdataentry(int a, int i)
+	{
+		return vararray_daten[a][i];
+	}
+	
 	public void setdate(int i, String a)
 	{
 		date[i] = a;
@@ -79,6 +84,16 @@ public class Aktie {
 		System.out.println("Name: " + getname());
 		System.out.println("WKN: " + getwkn());
 		System.out.println("Kürzel: " + getkuerzel());
+		System.out.println("");
+		System.out.println("Aktueller Kurseintrag:");
+		System.out.println("");
+		System.out.println("Date: " + getdate(0));
+		System.out.println("Open: " + getdataentry(0,0));
+		System.out.println("High: " + getdataentry(1,0));
+		System.out.println("Low: " + getdataentry(2,0));
+		System.out.println("Close: " + getdataentry(3,0));
+		System.out.println("Volume: " + getdataentry(2,0));
+		System.out.println("Adj-Close: " + getdataentry(3,0));
 		System.out.println("-----------------------");
 		}
 	}
