@@ -216,7 +216,7 @@ public class Hashtable {
 		if(found == true)
 			{
 			
-			int last_element = index_entry;
+			int last_element = (int) (index_entry+ (Math.pow((sondierung_delete),2)));
 			// Nachrücken der Elemente, welche mit dem gefunden Eintrag im Hashwert übereinstimmen
 			for(int i = sondierung_delete; i<(sondierung-1); i++)
 			{

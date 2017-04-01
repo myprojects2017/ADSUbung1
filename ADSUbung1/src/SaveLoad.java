@@ -13,11 +13,14 @@ public class SaveLoad {
 	
 	public void save(String name_csv, Hashtable hashtable_name, Hashtable hashtable_acronym)
 	{	
+		// für Kürzel + Name Hashtabelle
 		for(int j = 0; j < 2; j++)
 		{
 			try
 		    {
 				BufferedWriter bw;
+				
+				// Auswahl ob nach Kürzel oder Namen gesucht wird
 				if(j==0)
 				{
 					bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("src/hashtable/"+name_csv+"_name.csv"), "UTF-8"));
@@ -27,15 +30,17 @@ public class SaveLoad {
 					bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("src/hashtable/"+name_csv+"_kuerzel.csv"), "UTF-8"));	
 				}
 				
-		        
+		        // Alle 1019 Einträge durchgehen
 				for (int i =0; i < 1019; i++)
 		        {
 		            StringBuffer oneLine = new StringBuffer();
 		            Aktie entry = new Aktie();
 		            
+		            // Auswahl ob in Namen oder Kürzel Hashtabelle gesucht wird
 		            if(j==0) entry = hashtable_name.getEntry(i);
 		            else entry = hashtable_acronym.getEntry(i);
 		            
+		            // Falls Eintrag ungleich null, wird Name, Kürzel, WKN und Import (true,false) hineingeschrieben
 		            if(entry != null)
 		            {	            
 		            oneLine.append(entry.getName().trim().length() == 0? "" : entry.getName());
@@ -49,6 +54,7 @@ public class SaveLoad {
 		            bw.write(oneLine.toString());
 		            bw.newLine();
 		            }
+		            // Falls nichts in der Hashtabelle gespeichert ist, werden Leerzeichen ausgegeben
 		            else 
 		            {
 		            	oneLine.append(" ");
@@ -99,13 +105,16 @@ public class SaveLoad {
 					    // use comma as separator
 					    String[] varstring_temp = line.split(CSV_SEPARATOR);  
 					    
-	
+					    // Falls Läneg des ersten Eintrag größer 1 (also kein Leerzeichen), werden die 
+					    // Einträge als Aktien Objekt gespeichert und in die Hashtabelle geschrieben
 					    if(varstring_temp[0].length() > 1)
 					    {
 					    	Aktie entry = new Aktie();
 					    	entry.setName(varstring_temp[0]);
 					    	entry.setWKN(varstring_temp[1]);
 					    	entry.setKuerzel(varstring_temp[2]);
+					    	
+					    	// falls letzter Eintrag true, werden zusätzlich die Kursdaten importiert
 					    	if(varstring_temp[3].length() == 4)
 					    	{
 					    		entry.setImp();
@@ -123,11 +132,12 @@ public class SaveLoad {
 					    	}
 					    }
 					    	
+					    // Sonst wird der jeweilige Index der Hashtabelle null gesetzt
 					    else
 					    {
 					    	if(j==0)
 					    	{
-					    	hashtable_name.setNull(varint_count);
+					    		hashtable_name.setNull(varint_count);
 					    	}
 					    	else
 					    	{
