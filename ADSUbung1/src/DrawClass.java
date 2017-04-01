@@ -5,6 +5,8 @@ public class DrawClass {
 		double vardouble_max=0;
 		double vardouble_min=0; 
 		String[][] matrix = new String[13][30];
+		
+		// Erstellen einer Matrix mit leeren Einträgen
 		for(int i = 0; i < 13; i++)
 		{
 			for(int k = 0; k< 30; k++)
@@ -17,6 +19,7 @@ public class DrawClass {
 			}
 		}
 		
+		// Finden des Maximums und Minimums
 		if(aktie!=null && aktie.getDaten()!=null){
 			
 			double[][] vararray_temp=aktie.getDaten();
@@ -37,6 +40,8 @@ public class DrawClass {
 			
 			double vardouble_diff=vardouble_max-vardouble_min;
 			
+			// Berechnung der Auflösung
+			// Eintragen eines * in entsprechenden Eintrag
 			for(int i = 0; i < 30; i++)
 			{
 				double y_kaestchen = (((vararray_temp[3][i] - vardouble_min)*12)/vardouble_diff); 
@@ -46,6 +51,7 @@ public class DrawClass {
 			
 			String zeile ="";
 			
+			// Ausgabe der Grafik
 			for(int i = 12; i >= 0; i--)
 			{
 				for( int j = 0; j < 30; j ++)

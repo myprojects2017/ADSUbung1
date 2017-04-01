@@ -40,7 +40,7 @@ public class Hashtable {
 	public int hashFunction(String aktie)
 	{
 		int index = 0;
-		index = aktie.hashCode() % 1018;
+		index = aktie.hashCode() % 1019;
 		if(index<0) index = index*(-1);
 		return index;
 	}
@@ -216,6 +216,7 @@ public class Hashtable {
 		if(found == true)
 			{
 			
+			int last_element = index_entry;
 			// Nachrücken der Elemente, welche mit dem gefunden Eintrag im Hashwert übereinstimmen
 			for(int i = sondierung_delete; i<(sondierung-1); i++)
 			{
@@ -235,19 +236,21 @@ public class Hashtable {
 						int hashcode_nachher = 0;
 						
 						// Finden des nächsten Elements mit dem selben Hashcode, nach quadratischer Sondierung weiterrücken
-						do
+						while((hashcode_nachher != index_entry) && (a <= (sondierung-1)))
 						{
 						index_nachher = (int) (index_entry+ (Math.pow((i+a),2)) );
 						nachher = getEntry(index_nachher);
 						string_nachher = getFunction(nachher, kuerzel);
 						hashcode_nachher = hashFunction(string_nachher);
-						a = a + 1;
-								
+						a = a + 1;							
 						}
-						while((hashcode_nachher != index_entry) && (a <= (sondierung-1)));
 						
+						if(hashcode_nachher == index_entry)
+						{			
 						// Überschreiben des vorherigen Elements mit dem nächsten nachher						
 						setEntry(index_vorher,nachher);
+						last_element = index_nachher;
+						}
 						
 						vorher = null;
 						nachher = null;
@@ -258,11 +261,11 @@ public class Hashtable {
 			}
 			
 			// Referenz im letzten Glied der Kette löschen und Anzahl erniedrigen
-			setNull((int) (index_entry + Math.pow((sondierung-1), 2)));
+			setNull(last_element);
 			anzahl = anzahl - 1;
 			
 			
-			System.out.println("Löschen von " + ((int) (index_entry + Math.pow((sondierung-1), 2))));
+			System.out.println("Löschen von " + (last_element));
 			
 			// Rückgabe des Kürzels/Namens als String
 			String ausgabe;
