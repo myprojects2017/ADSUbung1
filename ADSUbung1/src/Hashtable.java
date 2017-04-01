@@ -40,7 +40,7 @@ public class Hashtable {
 	public int hashFunction(String aktie)
 	{
 		int index = 0;
-		index = aktie.hashCode() % 1019;
+		index = aktie.hashCode() % 1018;
 		if(index<0) index = index*(-1);
 		return index;
 	}
