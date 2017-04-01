@@ -46,7 +46,7 @@ public class Hashtable {
 	}
 	
 	
-	
+	// Richtige Methode der Klasse Aktie aufrufen, je nachdem ob kuerzel true, false
 	public String getFunction(Aktie aktie, Boolean kuerzel)
 	{
 		if(kuerzel == false)
@@ -234,7 +234,7 @@ public class Hashtable {
 						String string_nachher;
 						int hashcode_nachher = 0;
 						
-						// Finden des nächsten Elements mit dem selben Hashcode
+						// Finden des nächsten Elements mit dem selben Hashcode, nach quadratischer Sondierung weiterrücken
 						do
 						{
 						index_nachher = (int) (index_entry+ (Math.pow((i+a),2)) );
@@ -248,6 +248,11 @@ public class Hashtable {
 						
 						// Überschreiben des vorherigen Elements mit dem nächsten nachher						
 						setEntry(index_vorher,nachher);
+						
+						vorher = null;
+						nachher = null;
+						string_vorher = null;
+						string_nachher = null;
 					}
 				
 			}

@@ -1,11 +1,15 @@
  , , , 
  , , , 
+Gillette,A0REKM,gillette,false
  , , , 
  , , , 
+ATX,914410,atx,false
+OMV,874341,omv.vi,false
  , , , 
  , , , 
  , , , 
  , , , 
+Makita,856907,mktay,false
  , , , 
  , , , 
  , , , 
@@ -160,10 +164,13 @@
  , , , 
  , , , 
  , , , 
+Apple,865985,aapl,false
+Husqvarna,A0J2R2,hrz,false
  , , , 
  , , , 
  , , , 
  , , , 
+Facebook,A1JWVX,fb,false
  , , , 
  , , , 
  , , , 
@@ -208,6 +215,7 @@
  , , , 
  , , , 
  , , , 
+Volkswagen,766400,vow3.de,true
  , , , 
  , , , 
  , , , 
@@ -220,6 +228,7 @@
  , , , 
  , , , 
  , , , 
+Microsoft,870747,msft,true
  , , , 
  , , , 
  , , , 
@@ -235,7 +244,6 @@
  , , , 
  , , , 
  , , , 
-Microsoft,123123,msft,true
  , , , 
  , , , 
  , , , 
@@ -259,6 +267,8 @@ Microsoft,123123,msft,true
  , , , 
  , , , 
  , , , 
+Heineken,A0CA0G,heia-u.ti,false
+Raiffeisen,A0D9SU,rbi.vi,true
  , , , 
  , , , 
  , , , 
@@ -340,6 +350,8 @@ Microsoft,123123,msft,true
  , , , 
  , , , 
  , , , 
+Samsung,888322,ssu.de,true
+Pepsi,851995,pep,false
  , , , 
  , , , 
  , , , 
@@ -377,12 +389,14 @@ Microsoft,123123,msft,true
  , , , 
  , , , 
  , , , 
+LG,570238,lgl,false
  , , , 
  , , , 
  , , , 
  , , , 
  , , , 
  , , , 
+Alibaba,A117ME,baba,false
  , , , 
  , , , 
  , , , 
@@ -548,6 +562,7 @@ Microsoft,123123,msft,true
  , , , 
  , , , 
  , , , 
+Jungheinrich,621993,jun3.de,false
  , , , 
  , , , 
  , , , 
@@ -686,6 +701,7 @@ Microsoft,123123,msft,true
  , , , 
  , , , 
  , , , 
+Mazda,854131,mzday,false
  , , , 
  , , , 
  , , , 
@@ -719,6 +735,7 @@ Microsoft,123123,msft,true
  , , , 
  , , , 
  , , , 
+Tesla,A1CX3T,tsla,true
  , , , 
  , , , 
  , , , 
@@ -729,6 +746,7 @@ Microsoft,123123,msft,true
  , , , 
  , , , 
  , , , 
+BMW,519000,bmw.de,true
  , , , 
  , , , 
  , , , 
@@ -767,13 +785,16 @@ Microsoft,123123,msft,true
  , , , 
  , , , 
  , , , 
+Audi,675700,nsu.de,false
  , , , 
  , , , 
  , , , 
  , , , 
  , , , 
+McDonalds,856958,mcd.d,false
  , , , 
  , , , 
+Coca-Cola,850663,ko,false
  , , , 
  , , , 
  , , , 
@@ -820,9 +841,11 @@ Microsoft,123123,msft,true
  , , , 
  , , , 
  , , , 
+Alphabet,A14Y6H,goog,false
  , , , 
  , , , 
  , , , 
+EVN,74105,evn.vi,false
  , , , 
  , , , 
  , , , 
@@ -946,30 +969,7 @@ Microsoft,123123,msft,true
  , , , 
  , , , 
  , , , 
-OMV,12313,omv,false
-Tesla,123123,tes,false
- , , , 
- , , , 
- , , , 
- , , , 
- , , , 
- , , , 
- , , , 
- , , , 
- , , , 
- , , , 
- , , , 
- , , , 
- , , , 
- , , , 
- , , , 
- , , , 
- , , , 
- , , , 
- , , , 
- , , , 
- , , , 
- , , , 
+Philips,940602,phia.ti,false
  , , , 
  , , , 
  , , , 

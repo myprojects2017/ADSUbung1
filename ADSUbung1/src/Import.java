@@ -24,7 +24,7 @@ public class Import {
 				    String[] varstring_temp = line.split(",");  
 				    
 				    // Überspringen der ersten Teile, da in dieser Text steht
-				    if(varint_count>0) 
+				    if(varint_count > 0 && varint_count < 31) 
 				    	{
 				    	aktie.setDate(varint_count-1,varstring_temp[0]);
 
